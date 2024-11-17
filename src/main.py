@@ -131,12 +131,12 @@ class Analyser(customtkinter.CTk):
         if self.input_textarea.get("1.0", "end-1c") != \
                 "Insert your code here.":
             self.input_textarea.delete("0.0", END)
-            self.add_placeholder("<FocusIn>", "Insert your code here.")
 
     def copy(self):
         self.output_textbox.configure(state='normal')
         result = self.output_textbox.get("1.0", END)
         self.clipboard_append(result)
+        self.add_placeholder(None, "Insert your code here.")
 
 
 if __name__ == '__main__':

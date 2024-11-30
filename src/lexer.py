@@ -80,7 +80,9 @@ funcao minhaFuncao(x, y) {
     }
     enquanto (x > 0) {
         x = x - 1
-        se (x == 1) quebre
+        se (x == 1) {
+            quebre
+        }
     }
     retorne 0
 }

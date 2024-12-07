@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'CHAVE_D CHAVE_E DIVIDIDO ENQUANTO FUNCAO IGUAL MAIOR MAIOR_IGUAL MAIS MENOR MENOR_IGUAL MENOS NUMERO PARENTESE_D PARENTESE_E QUEBRE RECEBE RETORNE SE VARIAVEL VEZES VIRGULAprogram : functionfunction : FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_Dparams : VARIAVEL\n              | VARIAVEL VIRGULA params\n              | emptystatements : statement\n                  | statement statementsstatement : expression\n                 | ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D\n                 | SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D\n                 | QUEBRE\n                 | RETORNE expressionstatement : VARIAVEL RECEBE expressionexpression : term\n                  | expression MAIS term\n                  | expression MENOS term\n                  | comparisoncomparison : expression MAIOR term\n                  | expression MENOR term\n                  | expression MAIOR_IGUAL term\n                  | expression MENOR_IGUAL term\n                  | expression IGUAL termterm : factor\n            | term VEZES factor\n            | term DIVIDIDO factorfactor : NUMERO\n              | VARIAVEL\n              | PARENTESE_E expression PARENTESE_Dempty :'
+_lr_signature = 'CHAVE_D CHAVE_E DIVIDIDO ENQUANTO FRASE FUNCAO IGUAL MAIOR MAIOR_IGUAL MAIS MENOR MENOR_IGUAL MENOS NEWLINE NUMERO PARENTESE_D PARENTESE_E QUEBRE RECEBE RETORNE SE VARIAVEL VEZES VIRGULAprogram : function\n            | statementsfunction : FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_Dparams : VARIAVEL\n              | VARIAVEL VIRGULA params\n              | emptystatements : statement\n                  | statement statementsstatement : expression NEWLINE\n                 | ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D\n                 | SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D\n                 | QUEBRE\n                 | RETORNE expressionstatement : VARIAVEL RECEBE expressionexpression : term\n                  | expression MAIS term\n                  | expression MENOS term\n                  | comparisoncomparison : expression MAIOR term\n                  | expression MENOR term\n                  | expression MAIOR_IGUAL term\n                  | expression MENOR_IGUAL term\n                  | expression IGUAL termterm : factor\n            | term VEZES factor\n            | term DIVIDIDO factorfactor : NUMERO\n              | VARIAVEL\n              | PARENTESE_E expression PARENTESE_D\n              | FRASEempty :'
     
-_lr_action_items = {'FUNCAO':([0,],[3,]),'$end':([1,2,29,],[0,-1,-2,]),'VARIAVEL':([3,5,9,12,13,14,16,17,20,21,22,23,24,25,26,28,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,54,55,58,59,62,63,],[4,6,6,13,-27,28,13,-8,-11,28,-14,-17,-23,-26,28,-27,28,28,28,28,28,28,28,28,28,-12,28,28,-13,-28,-15,-16,-18,-19,-20,-21,-22,-24,-25,13,13,-9,-10,]),'PARENTESE_E':([4,12,13,14,16,17,18,19,20,21,22,23,24,25,26,28,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,54,55,58,59,62,63,],[5,14,-27,14,14,-8,38,39,-11,14,-14,-17,-23,-26,14,-27,14,14,14,14,14,14,14,14,14,-12,14,14,-13,-28,-15,-16,-18,-19,-20,-21,-22,-24,-25,14,14,-9,-10,]),'PARENTESE_D':([5,6,7,8,9,11,22,23,24,25,27,28,44,45,46,47,48,49,50,51,52,53,54,55,],[-29,-3,10,-5,-29,-4,-14,-17,-23,-26,44,-27,-28,-15,-16,-18,-19,-20,-21,-22,56,57,-24,-25,]),'VIRGULA':([6,],[9,]),'CHAVE_E':([10,56,57,],[12,58,59,]),'ENQUANTO':([12,13,16,17,20,22,23,24,25,28,40,43,44,45,46,47,48,49,50,51,54,55,58,59,62,63,],[18,-27,18,-8,-11,-14,-17,-23,-26,-27,-12,-13,-28,-15,-16,-18,-19,-20,-21,-22,-24,-25,18,18,-9,-10,]),'SE':([12,13,16,17,20,22,23,24,25,28,40,43,44,45,46,47,48,49,50,51,54,55,58,59,62,63,],[19,-27,19,-8,-11,-14,-17,-23,-26,-27,-12,-13,-28,-15,-16,-18,-19,-20,-21,-22,-24,-25,19,19,-9,-10,]),'QUEBRE':([12,13,16,17,20,22,23,24,25,28,40,43,44,45,46,47,48,49,50,51,54,55,58,59,62,63,],[20,-27,20,-8,-11,-14,-17,-23,-26,-27,-12,-13,-28,-15,-16,-18,-19,-20,-21,-22,-24,-25,20,20,-9,-10,]),'RETORNE':([12,13,16,17,20,22,23,24,25,28,40,43,44,45,46,47,48,49,50,51,54,55,58,59,62,63,],[21,-27,21,-8,-11,-14,-17,-23,-26,-27,-12,-13,-28,-15,-16,-18,-19,-20,-21,-22,-24,-25,21,21,-9,-10,]),'NUMERO':([12,13,14,16,17,20,21,22,23,24,25,26,28,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,54,55,58,59,62,63,],[25,-27,25,25,-8,-11,25,-14,-17,-23,-26,25,-27,25,25,25,25,25,25,25,25,25,-12,25,25,-13,-28,-15,-16,-18,-19,-20,-21,-22,-24,-25,25,25,-9,-10,]),'RECEBE':([13,],[26,]),'VEZES':([13,22,24,25,28,44,45,46,47,48,49,50,51,54,55,],[-27,41,-23,-26,-27,-28,41,41,41,41,41,41,41,-24,-25,]),'DIVIDIDO':([13,22,24,25,28,44,45,46,47,48,49,50,51,54,55,],[-27,42,-23,-26,-27,-28,42,42,42,42,42,42,42,-24,-25,]),'MAIS':([13,17,22,23,24,25,27,28,40,43,44,45,46,47,48,49,50,51,52,53,54,55,],[-27,31,-14,-17,-23,-26,31,-27,31,31,-28,-15,-16,-18,-19,-20,-21,-22,31,31,-24,-25,]),'MENOS':([13,17,22,23,24,25,27,28,40,43,44,45,46,47,48,49,50,51,52,53,54,55,],[-27,32,-14,-17,-23,-26,32,-27,32,32,-28,-15,-16,-18,-19,-20,-21,-22,32,32,-24,-25,]),'MAIOR':([13,17,22,23,24,25,27,28,40,43,44,45,46,47,48,49,50,51,52,53,54,55,],[-27,33,-14,-17,-23,-26,33,-27,33,33,-28,-15,-16,-18,-19,-20,-21,-22,33,33,-24,-25,]),'MENOR':([13,17,22,23,24,25,27,28,40,43,44,45,46,47,48,49,50,51,52,53,54,55,],[-27,34,-14,-17,-23,-26,34,-27,34,34,-28,-15,-16,-18,-19,-20,-21,-22,34,34,-24,-25,]),'MAIOR_IGUAL':([13,17,22,23,24,25,27,28,40,43,44,45,46,47,48,49,50,51,52,53,54,55,],[-27,35,-14,-17,-23,-26,35,-27,35,35,-28,-15,-16,-18,-19,-20,-21,-22,35,35,-24,-25,]),'MENOR_IGUAL':([13,17,22,23,24,25,27,28,40,43,44,45,46,47,48,49,50,51,52,53,54,55,],[-27,36,-14,-17,-23,-26,36,-27,36,36,-28,-15,-16,-18,-19,-20,-21,-22,36,36,-24,-25,]),'IGUAL':([13,17,22,23,24,25,27,28,40,43,44,45,46,47,48,49,50,51,52,53,54,55,],[-27,37,-14,-17,-23,-26,37,-27,37,37,-28,-15,-16,-18,-19,-20,-21,-22,37,37,-24,-25,]),'CHAVE_D':([13,15,16,17,20,22,23,24,25,28,30,40,43,44,45,46,47,48,49,50,51,54,55,60,61,62,63,],[-27,29,-6,-8,-11,-14,-17,-23,-26,-27,-7,-12,-13,-28,-15,-16,-18,-19,-20,-21,-22,-24,-25,62,63,-9,-10,]),}
+_lr_action_items = {'FUNCAO':([0,],[4,]),'ENQUANTO':([0,7,11,13,14,15,16,17,21,23,33,37,38,39,40,41,42,43,44,45,48,49,57,58,60,64,65,],[9,9,-12,-15,-18,-24,-27,-30,-28,-9,-13,-14,-29,-16,-17,-19,-20,-21,-22,-23,-25,-26,9,9,9,-10,-11,]),'SE':([0,7,11,13,14,15,16,17,21,23,33,37,38,39,40,41,42,43,44,45,48,49,57,58,60,64,65,],[10,10,-12,-15,-18,-24,-27,-30,-28,-9,-13,-14,-29,-16,-17,-19,-20,-21,-22,-23,-25,-26,10,10,10,-10,-11,]),'QUEBRE':([0,7,11,13,14,15,16,17,21,23,33,37,38,39,40,41,42,43,44,45,48,49,57,58,60,64,65,],[11,11,-12,-15,-18,-24,-27,-30,-28,-9,-13,-14,-29,-16,-17,-19,-20,-21,-22,-23,-25,-26,11,11,11,-10,-11,]),'RETORNE':([0,7,11,13,14,15,16,17,21,23,33,37,38,39,40,41,42,43,44,45,48,49,57,58,60,64,65,],[12,12,-12,-15,-18,-24,-27,-30,-28,-9,-13,-14,-29,-16,-17,-19,-20,-21,-22,-23,-25,-26,12,12,12,-10,-11,]),'VARIAVEL':([0,4,6,7,11,12,13,14,15,16,17,19,21,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,48,49,55,57,58,60,64,65,],[5,18,21,5,-12,21,-15,-18,-24,-27,-30,21,-28,-9,21,21,21,21,21,21,21,21,21,-13,21,21,50,-14,-29,-16,-17,-19,-20,-21,-22,-23,-25,-26,50,5,5,5,-10,-11,]),'NUMERO':([0,6,7,11,12,13,14,15,16,17,19,21,23,24,25,26,27,28,29,30,31,32,33,34,35,37,38,39,40,41,42,43,44,45,48,49,57,58,60,64,65,],[16,16,16,-12,16,-15,-18,-24,-27,-30,16,-28,-9,16,16,16,16,16,16,16,16,16,-13,16,16,-14,-29,-16,-17,-19,-20,-21,-22,-23,-25,-26,16,16,16,-10,-11,]),'PARENTESE_E':([0,6,7,9,10,11,12,13,14,15,16,17,18,19,21,23,24,25,26,27,28,29,30,31,32,33,34,35,37,38,39,40,41,42,43,44,45,48,49,57,58,60,64,65,],[6,6,6,31,32,-12,6,-15,-18,-24,-27,-30,36,6,-28,-9,6,6,6,6,6,6,6,6,6,-13,6,6,-14,-29,-16,-17,-19,-20,-21,-22,-23,-25,-26,6,6,6,-10,-11,]),'FRASE':([0,6,7,11,12,13,14,15,16,17,19,21,23,24,25,26,27,28,29,30,31,32,33,34,35,37,38,39,40,41,42,43,44,45,48,49,57,58,60,64,65,],[17,17,17,-12,17,-15,-18,-24,-27,-30,17,-28,-9,17,17,17,17,17,17,17,17,17,-13,17,17,-14,-29,-16,-17,-19,-20,-21,-22,-23,-25,-26,17,17,17,-10,-11,]),'$end':([1,2,3,7,11,13,14,15,16,17,21,22,23,33,37,38,39,40,41,42,43,44,45,48,49,64,65,66,],[0,-1,-2,-7,-12,-15,-18,-24,-27,-30,-28,-8,-9,-13,-14,-29,-16,-17,-19,-20,-21,-22,-23,-25,-26,-10,-11,-3,]),'RECEBE':([5,],[19,]),'VEZES':([5,13,15,16,17,21,38,39,40,41,42,43,44,45,48,49,],[-28,34,-24,-27,-30,-28,-29,34,34,34,34,34,34,34,-25,-26,]),'DIVIDIDO':([5,13,15,16,17,21,38,39,40,41,42,43,44,45,48,49,],[-28,35,-24,-27,-30,-28,-29,35,35,35,35,35,35,35,-25,-26,]),'NEWLINE':([5,8,13,14,15,16,17,21,38,39,40,41,42,43,44,45,48,49,],[-28,23,-15,-18,-24,-27,-30,-28,-29,-16,-17,-19,-20,-21,-22,-23,-25,-26,]),'MAIS':([5,8,13,14,15,16,17,20,21,33,37,38,39,40,41,42,43,44,45,46,47,48,49,],[-28,24,-15,-18,-24,-27,-30,24,-28,24,24,-29,-16,-17,-19,-20,-21,-22,-23,24,24,-25,-26,]),'MENOS':([5,8,13,14,15,16,17,20,21,33,37,38,39,40,41,42,43,44,45,46,47,48,49,],[-28,25,-15,-18,-24,-27,-30,25,-28,25,25,-29,-16,-17,-19,-20,-21,-22,-23,25,25,-25,-26,]),'MAIOR':([5,8,13,14,15,16,17,20,21,33,37,38,39,40,41,42,43,44,45,46,47,48,49,],[-28,26,-15,-18,-24,-27,-30,26,-28,26,26,-29,-16,-17,-19,-20,-21,-22,-23,26,26,-25,-26,]),'MENOR':([5,8,13,14,15,16,17,20,21,33,37,38,39,40,41,42,43,44,45,46,47,48,49,],[-28,27,-15,-18,-24,-27,-30,27,-28,27,27,-29,-16,-17,-19,-20,-21,-22,-23,27,27,-25,-26,]),'MAIOR_IGUAL':([5,8,13,14,15,16,17,20,21,33,37,38,39,40,41,42,43,44,45,46,47,48,49,],[-28,28,-15,-18,-24,-27,-30,28,-28,28,28,-29,-16,-17,-19,-20,-21,-22,-23,28,28,-25,-26,]),'MENOR_IGUAL':([5,8,13,14,15,16,17,20,21,33,37,38,39,40,41,42,43,44,45,46,47,48,49,],[-28,29,-15,-18,-24,-27,-30,29,-28,29,29,-29,-16,-17,-19,-20,-21,-22,-23,29,29,-25,-26,]),'IGUAL':([5,8,13,14,15,16,17,20,21,33,37,38,39,40,41,42,43,44,45,46,47,48,49,],[-28,30,-15,-18,-24,-27,-30,30,-28,30,30,-29,-16,-17,-19,-20,-21,-22,-23,30,30,-25,-26,]),'CHAVE_D':([7,11,13,14,15,16,17,21,22,23,33,37,38,39,40,41,42,43,44,45,48,49,61,62,63,64,65,],[-7,-12,-15,-18,-24,-27,-30,-28,-8,-9,-13,-14,-29,-16,-17,-19,-20,-21,-22,-23,-25,-26,64,65,66,-10,-11,]),'PARENTESE_D':([13,14,15,16,17,20,21,36,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,55,59,],[-15,-18,-24,-27,-30,38,-28,-31,-29,-16,-17,-19,-20,-21,-22,-23,53,54,-25,-26,-4,56,-6,-31,-5,]),'VIRGULA':([50,],[55,]),'CHAVE_E':([53,54,56,],[57,58,60,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'function':([0,],[2,]),'params':([5,9,],[7,11,]),'empty':([5,9,],[8,8,]),'statements':([12,16,58,59,],[15,30,60,61,]),'statement':([12,16,58,59,],[16,16,16,16,]),'expression':([12,14,16,21,26,38,39,58,59,],[17,27,17,40,43,52,53,17,17,]),'term':([12,14,16,21,26,31,32,33,34,35,36,37,38,39,58,59,],[22,22,22,22,22,45,46,47,48,49,50,51,22,22,22,22,]),'comparison':([12,14,16,21,26,38,39,58,59,],[23,23,23,23,23,23,23,23,23,]),'factor':([12,14,16,21,26,31,32,33,34,35,36,37,38,39,41,42,58,59,],[24,24,24,24,24,24,24,24,24,24,24,24,24,24,54,55,24,24,]),}
+_lr_goto_items = {'program':([0,],[1,]),'function':([0,],[2,]),'statements':([0,7,57,58,60,],[3,22,61,62,63,]),'statement':([0,7,57,58,60,],[7,7,7,7,7,]),'expression':([0,6,7,12,19,31,32,57,58,60,],[8,20,8,33,37,46,47,8,8,8,]),'term':([0,6,7,12,19,24,25,26,27,28,29,30,31,32,57,58,60,],[13,13,13,13,13,39,40,41,42,43,44,45,13,13,13,13,13,]),'comparison':([0,6,7,12,19,31,32,57,58,60,],[14,14,14,14,14,14,14,14,14,14,]),'factor':([0,6,7,12,19,24,25,26,27,28,29,30,31,32,34,35,57,58,60,],[15,15,15,15,15,15,15,15,15,15,15,15,15,15,48,49,15,15,15,]),'params':([36,55,],[51,59,]),'empty':([36,55,],[52,52,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,33 +27,35 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> program","S'",1,None,None,None),
-  ('program -> function','program',1,'p_program','sintatic.py',22),
-  ('function -> FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_D','function',8,'p_function','sintatic.py',27),
-  ('params -> VARIAVEL','params',1,'p_params','sintatic.py',32),
-  ('params -> VARIAVEL VIRGULA params','params',3,'p_params','sintatic.py',33),
-  ('params -> empty','params',1,'p_params','sintatic.py',34),
-  ('statements -> statement','statements',1,'p_statements','sintatic.py',44),
-  ('statements -> statement statements','statements',2,'p_statements','sintatic.py',45),
-  ('statement -> expression','statement',1,'p_statement','sintatic.py',53),
-  ('statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D','statement',7,'p_statement','sintatic.py',54),
-  ('statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D','statement',7,'p_statement','sintatic.py',55),
-  ('statement -> QUEBRE','statement',1,'p_statement','sintatic.py',56),
-  ('statement -> RETORNE expression','statement',2,'p_statement','sintatic.py',57),
-  ('statement -> VARIAVEL RECEBE expression','statement',3,'p_statement_assignment','sintatic.py',71),
-  ('expression -> term','expression',1,'p_expression','sintatic.py',76),
-  ('expression -> expression MAIS term','expression',3,'p_expression','sintatic.py',77),
-  ('expression -> expression MENOS term','expression',3,'p_expression','sintatic.py',78),
-  ('expression -> comparison','expression',1,'p_expression','sintatic.py',79),
-  ('comparison -> expression MAIOR term','comparison',3,'p_comparison','sintatic.py',86),
-  ('comparison -> expression MENOR term','comparison',3,'p_comparison','sintatic.py',87),
-  ('comparison -> expression MAIOR_IGUAL term','comparison',3,'p_comparison','sintatic.py',88),
-  ('comparison -> expression MENOR_IGUAL term','comparison',3,'p_comparison','sintatic.py',89),
-  ('comparison -> expression IGUAL term','comparison',3,'p_comparison','sintatic.py',90),
-  ('term -> factor','term',1,'p_term','sintatic.py',95),
-  ('term -> term VEZES factor','term',3,'p_term','sintatic.py',96),
-  ('term -> term DIVIDIDO factor','term',3,'p_term','sintatic.py',97),
-  ('factor -> NUMERO','factor',1,'p_factor','sintatic.py',105),
-  ('factor -> VARIAVEL','factor',1,'p_factor','sintatic.py',106),
-  ('factor -> PARENTESE_E expression PARENTESE_D','factor',3,'p_factor','sintatic.py',107),
-  ('empty -> <empty>','empty',0,'p_empty','sintatic.py',115),
+  ('program -> function','program',1,'p_program','sintatic.py',32),
+  ('program -> statements','program',1,'p_program','sintatic.py',33),
+  ('function -> FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_D','function',8,'p_function','sintatic.py',38),
+  ('params -> VARIAVEL','params',1,'p_params','sintatic.py',43),
+  ('params -> VARIAVEL VIRGULA params','params',3,'p_params','sintatic.py',44),
+  ('params -> empty','params',1,'p_params','sintatic.py',45),
+  ('statements -> statement','statements',1,'p_statements','sintatic.py',55),
+  ('statements -> statement statements','statements',2,'p_statements','sintatic.py',56),
+  ('statement -> expression NEWLINE','statement',2,'p_statement','sintatic.py',64),
+  ('statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D','statement',7,'p_statement','sintatic.py',65),
+  ('statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D','statement',7,'p_statement','sintatic.py',66),
+  ('statement -> QUEBRE','statement',1,'p_statement','sintatic.py',67),
+  ('statement -> RETORNE expression','statement',2,'p_statement','sintatic.py',68),
+  ('statement -> VARIAVEL RECEBE expression','statement',3,'p_statement_assignment','sintatic.py',82),
+  ('expression -> term','expression',1,'p_expression','sintatic.py',87),
+  ('expression -> expression MAIS term','expression',3,'p_expression','sintatic.py',88),
+  ('expression -> expression MENOS term','expression',3,'p_expression','sintatic.py',89),
+  ('expression -> comparison','expression',1,'p_expression','sintatic.py',90),
+  ('comparison -> expression MAIOR term','comparison',3,'p_comparison','sintatic.py',108),
+  ('comparison -> expression MENOR term','comparison',3,'p_comparison','sintatic.py',109),
+  ('comparison -> expression MAIOR_IGUAL term','comparison',3,'p_comparison','sintatic.py',110),
+  ('comparison -> expression MENOR_IGUAL term','comparison',3,'p_comparison','sintatic.py',111),
+  ('comparison -> expression IGUAL term','comparison',3,'p_comparison','sintatic.py',112),
+  ('term -> factor','term',1,'p_term','sintatic.py',117),
+  ('term -> term VEZES factor','term',3,'p_term','sintatic.py',118),
+  ('term -> term DIVIDIDO factor','term',3,'p_term','sintatic.py',119),
+  ('factor -> NUMERO','factor',1,'p_factor','sintatic.py',127),
+  ('factor -> VARIAVEL','factor',1,'p_factor','sintatic.py',128),
+  ('factor -> PARENTESE_E expression PARENTESE_D','factor',3,'p_factor','sintatic.py',129),
+  ('factor -> FRASE','factor',1,'p_factor','sintatic.py',130),
+  ('empty -> <empty>','empty',0,'p_empty','sintatic.py',138),
 ]

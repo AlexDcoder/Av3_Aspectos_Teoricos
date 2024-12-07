@@ -1,6 +1,7 @@
-class PyturgueseCompiler(object):
-    pass
+from sintatic import lexer, parser
 
 
-if __name__ == '__main__':
-    pass
+class PyturgueseCompiler():
+    @staticmethod
+    def generate_tree(code):
+        return parser.parse(code, lexer=lexer)

@@ -10,9 +10,9 @@ reserved = {
 }
 
 tokens = (
-    'VARIAVEL', 'NUMERO', 'MAIS', 'MENOS', 'VEZES', 'DIVIDIDO', 'RECEBE', 'IGUAL',
-    'MAIOR', 'MAIOR_IGUAL', 'MENOR', 'MENOR_IGUAL', 'VIRGULA',
-    'PARENTESE_D', 'PARENTESE_E', 'CHAVE_D', 'CHAVE_E',
+    'FRASE', 'VARIAVEL', 'NUMERO', 'MAIS', 'MENOS', 'VEZES', 'DIVIDIDO', 'RECEBE',
+    'IGUAL', 'MAIOR', 'MAIOR_IGUAL', 'MENOR', 'MENOR_IGUAL', 'VIRGULA',
+    'PARENTESE_D', 'PARENTESE_E', 'CHAVE_D', 'CHAVE_E', "NEWLINE"
 ) + tuple(reserved.values())
 
 # Rules for simple tokens
@@ -38,6 +38,12 @@ t_CHAVE_D = r'\}'
 def t_VARIAVEL(t):
     r'\w+'
     t.type = reserved.get(t.value, 'VARIAVEL')
+    return t
+
+
+def t_FRASE(t):
+    r'"\w+(\d)*"'
+    t.type = reserved.get(t.value, 'FRASE')
     return t
 
 
@@ -67,25 +73,16 @@ t_ignore = ' \t'
 
 lexer = lex.lex()
 
+
 def get_lexer():
     return lexer
+
 
 if __name__ == '__main__':
     lexer = lex.lex()
 
     data = """
-funcao minhaFuncao(x, y) {
-    se (x < y) {
-        retorne x + y
-    }
-    enquanto (x > 0) {
-        x = x - 1
-        se (x == 1) {
-            quebre
-        }
-    }
-    retorne 0
-}
+"adsadsadad"
 """
     lexer.input(data)
     for token in lexer:

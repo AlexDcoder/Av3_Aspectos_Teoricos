@@ -4,73 +4,77 @@ Grammar
 
 Rule 0     S' -> program
 Rule 1     program -> function
-Rule 2     function -> FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_D
-Rule 3     params -> VARIAVEL
-Rule 4     params -> VARIAVEL VIRGULA params
-Rule 5     params -> empty
-Rule 6     statements -> statement
-Rule 7     statements -> statement statements
-Rule 8     statement -> expression
-Rule 9     statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
-Rule 10    statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
-Rule 11    statement -> QUEBRE
-Rule 12    statement -> RETORNE expression
-Rule 13    statement -> VARIAVEL RECEBE expression
-Rule 14    expression -> term
-Rule 15    expression -> expression MAIS term
-Rule 16    expression -> expression MENOS term
-Rule 17    expression -> comparison
-Rule 18    comparison -> expression MAIOR term
-Rule 19    comparison -> expression MENOR term
-Rule 20    comparison -> expression MAIOR_IGUAL term
-Rule 21    comparison -> expression MENOR_IGUAL term
-Rule 22    comparison -> expression IGUAL term
-Rule 23    term -> factor
-Rule 24    term -> term VEZES factor
-Rule 25    term -> term DIVIDIDO factor
-Rule 26    factor -> NUMERO
-Rule 27    factor -> VARIAVEL
-Rule 28    factor -> PARENTESE_E expression PARENTESE_D
-Rule 29    empty -> <empty>
+Rule 2     program -> statements
+Rule 3     function -> FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_D
+Rule 4     params -> VARIAVEL
+Rule 5     params -> VARIAVEL VIRGULA params
+Rule 6     params -> empty
+Rule 7     statements -> statement
+Rule 8     statements -> statement statements
+Rule 9     statement -> expression NEWLINE
+Rule 10    statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
+Rule 11    statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
+Rule 12    statement -> QUEBRE
+Rule 13    statement -> RETORNE expression
+Rule 14    statement -> VARIAVEL RECEBE expression
+Rule 15    expression -> term
+Rule 16    expression -> expression MAIS term
+Rule 17    expression -> expression MENOS term
+Rule 18    expression -> comparison
+Rule 19    comparison -> expression MAIOR term
+Rule 20    comparison -> expression MENOR term
+Rule 21    comparison -> expression MAIOR_IGUAL term
+Rule 22    comparison -> expression MENOR_IGUAL term
+Rule 23    comparison -> expression IGUAL term
+Rule 24    term -> factor
+Rule 25    term -> term VEZES factor
+Rule 26    term -> term DIVIDIDO factor
+Rule 27    factor -> NUMERO
+Rule 28    factor -> VARIAVEL
+Rule 29    factor -> PARENTESE_E expression PARENTESE_D
+Rule 30    factor -> FRASE
+Rule 31    empty -> <empty>
 
 Terminals, with rules where they appear
 
-CHAVE_D              : 2 9 10
-CHAVE_E              : 2 9 10
-DIVIDIDO             : 25
-ENQUANTO             : 9
-FUNCAO               : 2
-IGUAL                : 22
-MAIOR                : 18
-MAIOR_IGUAL          : 20
-MAIS                 : 15
-MENOR                : 19
-MENOR_IGUAL          : 21
-MENOS                : 16
-NUMERO               : 26
-PARENTESE_D          : 2 9 10 28
-PARENTESE_E          : 2 9 10 28
-QUEBRE               : 11
-RECEBE               : 13
-RETORNE              : 12
-SE                   : 10
-VARIAVEL             : 2 3 4 13 27
-VEZES                : 24
-VIRGULA              : 4
+CHAVE_D              : 3 10 11
+CHAVE_E              : 3 10 11
+DIVIDIDO             : 26
+ENQUANTO             : 10
+FRASE                : 30
+FUNCAO               : 3
+IGUAL                : 23
+MAIOR                : 19
+MAIOR_IGUAL          : 21
+MAIS                 : 16
+MENOR                : 20
+MENOR_IGUAL          : 22
+MENOS                : 17
+NEWLINE              : 9
+NUMERO               : 27
+PARENTESE_D          : 3 10 11 29
+PARENTESE_E          : 3 10 11 29
+QUEBRE               : 12
+RECEBE               : 14
+RETORNE              : 13
+SE                   : 11
+VARIAVEL             : 3 4 5 14 28
+VEZES                : 25
+VIRGULA              : 5
 error                : 
 
 Nonterminals, with rules where they appear
 
-comparison           : 17
-empty                : 5
-expression           : 8 9 10 12 13 15 16 18 19 20 21 22 28
-factor               : 23 24 25
+comparison           : 18
+empty                : 6
+expression           : 9 10 11 13 14 16 17 19 20 21 22 23 29
+factor               : 24 25 26
 function             : 1
-params               : 2 4
+params               : 3 5
 program              : 0
-statement            : 6 7
-statements           : 2 7 9 10
-term                 : 14 15 16 18 19 20 21 22 24 25
+statement            : 7 8
+statements           : 2 3 8 10 11
+term                 : 15 16 17 19 20 21 22 23 25 26
 
 Parsing method: LALR
 
@@ -78,12 +82,51 @@ state 0
 
     (0) S' -> . program
     (1) program -> . function
-    (2) function -> . FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_D
+    (2) program -> . statements
+    (3) function -> . FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_D
+    (7) statements -> . statement
+    (8) statements -> . statement statements
+    (9) statement -> . expression NEWLINE
+    (10) statement -> . ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
+    (11) statement -> . SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
+    (12) statement -> . QUEBRE
+    (13) statement -> . RETORNE expression
+    (14) statement -> . VARIAVEL RECEBE expression
+    (15) expression -> . term
+    (16) expression -> . expression MAIS term
+    (17) expression -> . expression MENOS term
+    (18) expression -> . comparison
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (19) comparison -> . expression MAIOR term
+    (20) comparison -> . expression MENOR term
+    (21) comparison -> . expression MAIOR_IGUAL term
+    (22) comparison -> . expression MENOR_IGUAL term
+    (23) comparison -> . expression IGUAL term
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    FUNCAO          shift and go to state 3
+    FUNCAO          shift and go to state 4
+    ENQUANTO        shift and go to state 9
+    SE              shift and go to state 10
+    QUEBRE          shift and go to state 11
+    RETORNE         shift and go to state 12
+    VARIAVEL        shift and go to state 5
+    NUMERO          shift and go to state 16
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
     program                        shift and go to state 1
     function                       shift and go to state 2
+    statements                     shift and go to state 3
+    statement                      shift and go to state 7
+    expression                     shift and go to state 8
+    term                           shift and go to state 13
+    comparison                     shift and go to state 14
+    factor                         shift and go to state 15
 
 state 1
 
@@ -100,1185 +143,1314 @@ state 2
 
 state 3
 
-    (2) function -> FUNCAO . VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_D
+    (2) program -> statements .
 
-    VARIAVEL        shift and go to state 4
+    $end            reduce using rule 2 (program -> statements .)
 
 
 state 4
 
-    (2) function -> FUNCAO VARIAVEL . PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_D
+    (3) function -> FUNCAO . VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_D
 
-    PARENTESE_E     shift and go to state 5
+    VARIAVEL        shift and go to state 18
 
 
 state 5
 
-    (2) function -> FUNCAO VARIAVEL PARENTESE_E . params PARENTESE_D CHAVE_E statements CHAVE_D
-    (3) params -> . VARIAVEL
-    (4) params -> . VARIAVEL VIRGULA params
-    (5) params -> . empty
-    (29) empty -> .
+    (14) statement -> VARIAVEL . RECEBE expression
+    (28) factor -> VARIAVEL .
 
-    VARIAVEL        shift and go to state 6
-    PARENTESE_D     reduce using rule 29 (empty -> .)
+    RECEBE          shift and go to state 19
+    VEZES           reduce using rule 28 (factor -> VARIAVEL .)
+    DIVIDIDO        reduce using rule 28 (factor -> VARIAVEL .)
+    NEWLINE         reduce using rule 28 (factor -> VARIAVEL .)
+    MAIS            reduce using rule 28 (factor -> VARIAVEL .)
+    MENOS           reduce using rule 28 (factor -> VARIAVEL .)
+    MAIOR           reduce using rule 28 (factor -> VARIAVEL .)
+    MENOR           reduce using rule 28 (factor -> VARIAVEL .)
+    MAIOR_IGUAL     reduce using rule 28 (factor -> VARIAVEL .)
+    MENOR_IGUAL     reduce using rule 28 (factor -> VARIAVEL .)
+    IGUAL           reduce using rule 28 (factor -> VARIAVEL .)
 
-    params                         shift and go to state 7
-    empty                          shift and go to state 8
 
 state 6
 
-    (3) params -> VARIAVEL .
-    (4) params -> VARIAVEL . VIRGULA params
+    (29) factor -> PARENTESE_E . expression PARENTESE_D
+    (15) expression -> . term
+    (16) expression -> . expression MAIS term
+    (17) expression -> . expression MENOS term
+    (18) expression -> . comparison
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (19) comparison -> . expression MAIOR term
+    (20) comparison -> . expression MENOR term
+    (21) comparison -> . expression MAIOR_IGUAL term
+    (22) comparison -> . expression MENOR_IGUAL term
+    (23) comparison -> . expression IGUAL term
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    PARENTESE_D     reduce using rule 3 (params -> VARIAVEL .)
-    VIRGULA         shift and go to state 9
+    NUMERO          shift and go to state 16
+    VARIAVEL        shift and go to state 21
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
+    expression                     shift and go to state 20
+    term                           shift and go to state 13
+    comparison                     shift and go to state 14
+    factor                         shift and go to state 15
 
 state 7
 
-    (2) function -> FUNCAO VARIAVEL PARENTESE_E params . PARENTESE_D CHAVE_E statements CHAVE_D
+    (7) statements -> statement .
+    (8) statements -> statement . statements
+    (7) statements -> . statement
+    (8) statements -> . statement statements
+    (9) statement -> . expression NEWLINE
+    (10) statement -> . ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
+    (11) statement -> . SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
+    (12) statement -> . QUEBRE
+    (13) statement -> . RETORNE expression
+    (14) statement -> . VARIAVEL RECEBE expression
+    (15) expression -> . term
+    (16) expression -> . expression MAIS term
+    (17) expression -> . expression MENOS term
+    (18) expression -> . comparison
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (19) comparison -> . expression MAIOR term
+    (20) comparison -> . expression MENOR term
+    (21) comparison -> . expression MAIOR_IGUAL term
+    (22) comparison -> . expression MENOR_IGUAL term
+    (23) comparison -> . expression IGUAL term
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    PARENTESE_D     shift and go to state 10
+    $end            reduce using rule 7 (statements -> statement .)
+    CHAVE_D         reduce using rule 7 (statements -> statement .)
+    ENQUANTO        shift and go to state 9
+    SE              shift and go to state 10
+    QUEBRE          shift and go to state 11
+    RETORNE         shift and go to state 12
+    VARIAVEL        shift and go to state 5
+    NUMERO          shift and go to state 16
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
+    statement                      shift and go to state 7
+    statements                     shift and go to state 22
+    expression                     shift and go to state 8
+    term                           shift and go to state 13
+    comparison                     shift and go to state 14
+    factor                         shift and go to state 15
 
 state 8
 
-    (5) params -> empty .
+    (9) statement -> expression . NEWLINE
+    (16) expression -> expression . MAIS term
+    (17) expression -> expression . MENOS term
+    (19) comparison -> expression . MAIOR term
+    (20) comparison -> expression . MENOR term
+    (21) comparison -> expression . MAIOR_IGUAL term
+    (22) comparison -> expression . MENOR_IGUAL term
+    (23) comparison -> expression . IGUAL term
 
-    PARENTESE_D     reduce using rule 5 (params -> empty .)
+    NEWLINE         shift and go to state 23
+    MAIS            shift and go to state 24
+    MENOS           shift and go to state 25
+    MAIOR           shift and go to state 26
+    MENOR           shift and go to state 27
+    MAIOR_IGUAL     shift and go to state 28
+    MENOR_IGUAL     shift and go to state 29
+    IGUAL           shift and go to state 30
 
 
 state 9
 
-    (4) params -> VARIAVEL VIRGULA . params
-    (3) params -> . VARIAVEL
-    (4) params -> . VARIAVEL VIRGULA params
-    (5) params -> . empty
-    (29) empty -> .
+    (10) statement -> ENQUANTO . PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
 
-    VARIAVEL        shift and go to state 6
-    PARENTESE_D     reduce using rule 29 (empty -> .)
+    PARENTESE_E     shift and go to state 31
 
-    params                         shift and go to state 11
-    empty                          shift and go to state 8
 
 state 10
 
-    (2) function -> FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D . CHAVE_E statements CHAVE_D
+    (11) statement -> SE . PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
 
-    CHAVE_E         shift and go to state 12
+    PARENTESE_E     shift and go to state 32
 
 
 state 11
 
-    (4) params -> VARIAVEL VIRGULA params .
+    (12) statement -> QUEBRE .
 
-    PARENTESE_D     reduce using rule 4 (params -> VARIAVEL VIRGULA params .)
+    ENQUANTO        reduce using rule 12 (statement -> QUEBRE .)
+    SE              reduce using rule 12 (statement -> QUEBRE .)
+    QUEBRE          reduce using rule 12 (statement -> QUEBRE .)
+    RETORNE         reduce using rule 12 (statement -> QUEBRE .)
+    VARIAVEL        reduce using rule 12 (statement -> QUEBRE .)
+    NUMERO          reduce using rule 12 (statement -> QUEBRE .)
+    PARENTESE_E     reduce using rule 12 (statement -> QUEBRE .)
+    FRASE           reduce using rule 12 (statement -> QUEBRE .)
+    $end            reduce using rule 12 (statement -> QUEBRE .)
+    CHAVE_D         reduce using rule 12 (statement -> QUEBRE .)
 
 
 state 12
 
-    (2) function -> FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E . statements CHAVE_D
-    (6) statements -> . statement
-    (7) statements -> . statement statements
-    (8) statement -> . expression
-    (9) statement -> . ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
-    (10) statement -> . SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
-    (11) statement -> . QUEBRE
-    (12) statement -> . RETORNE expression
-    (13) statement -> . VARIAVEL RECEBE expression
-    (14) expression -> . term
-    (15) expression -> . expression MAIS term
-    (16) expression -> . expression MENOS term
-    (17) expression -> . comparison
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (18) comparison -> . expression MAIOR term
-    (19) comparison -> . expression MENOR term
-    (20) comparison -> . expression MAIOR_IGUAL term
-    (21) comparison -> . expression MENOR_IGUAL term
-    (22) comparison -> . expression IGUAL term
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (13) statement -> RETORNE . expression
+    (15) expression -> . term
+    (16) expression -> . expression MAIS term
+    (17) expression -> . expression MENOS term
+    (18) expression -> . comparison
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (19) comparison -> . expression MAIOR term
+    (20) comparison -> . expression MENOR term
+    (21) comparison -> . expression MAIOR_IGUAL term
+    (22) comparison -> . expression MENOR_IGUAL term
+    (23) comparison -> . expression IGUAL term
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    ENQUANTO        shift and go to state 18
-    SE              shift and go to state 19
-    QUEBRE          shift and go to state 20
-    RETORNE         shift and go to state 21
-    VARIAVEL        shift and go to state 13
-    NUMERO          shift and go to state 25
-    PARENTESE_E     shift and go to state 14
+    NUMERO          shift and go to state 16
+    VARIAVEL        shift and go to state 21
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
-    statements                     shift and go to state 15
-    statement                      shift and go to state 16
-    expression                     shift and go to state 17
-    term                           shift and go to state 22
-    comparison                     shift and go to state 23
-    factor                         shift and go to state 24
+    expression                     shift and go to state 33
+    term                           shift and go to state 13
+    comparison                     shift and go to state 14
+    factor                         shift and go to state 15
 
 state 13
 
-    (13) statement -> VARIAVEL . RECEBE expression
-    (27) factor -> VARIAVEL .
+    (15) expression -> term .
+    (25) term -> term . VEZES factor
+    (26) term -> term . DIVIDIDO factor
 
-    RECEBE          shift and go to state 26
-    VEZES           reduce using rule 27 (factor -> VARIAVEL .)
-    DIVIDIDO        reduce using rule 27 (factor -> VARIAVEL .)
-    MAIS            reduce using rule 27 (factor -> VARIAVEL .)
-    MENOS           reduce using rule 27 (factor -> VARIAVEL .)
-    MAIOR           reduce using rule 27 (factor -> VARIAVEL .)
-    MENOR           reduce using rule 27 (factor -> VARIAVEL .)
-    MAIOR_IGUAL     reduce using rule 27 (factor -> VARIAVEL .)
-    MENOR_IGUAL     reduce using rule 27 (factor -> VARIAVEL .)
-    IGUAL           reduce using rule 27 (factor -> VARIAVEL .)
-    ENQUANTO        reduce using rule 27 (factor -> VARIAVEL .)
-    SE              reduce using rule 27 (factor -> VARIAVEL .)
-    QUEBRE          reduce using rule 27 (factor -> VARIAVEL .)
-    RETORNE         reduce using rule 27 (factor -> VARIAVEL .)
-    VARIAVEL        reduce using rule 27 (factor -> VARIAVEL .)
-    NUMERO          reduce using rule 27 (factor -> VARIAVEL .)
-    PARENTESE_E     reduce using rule 27 (factor -> VARIAVEL .)
-    CHAVE_D         reduce using rule 27 (factor -> VARIAVEL .)
+    NEWLINE         reduce using rule 15 (expression -> term .)
+    MAIS            reduce using rule 15 (expression -> term .)
+    MENOS           reduce using rule 15 (expression -> term .)
+    MAIOR           reduce using rule 15 (expression -> term .)
+    MENOR           reduce using rule 15 (expression -> term .)
+    MAIOR_IGUAL     reduce using rule 15 (expression -> term .)
+    MENOR_IGUAL     reduce using rule 15 (expression -> term .)
+    IGUAL           reduce using rule 15 (expression -> term .)
+    PARENTESE_D     reduce using rule 15 (expression -> term .)
+    ENQUANTO        reduce using rule 15 (expression -> term .)
+    SE              reduce using rule 15 (expression -> term .)
+    QUEBRE          reduce using rule 15 (expression -> term .)
+    RETORNE         reduce using rule 15 (expression -> term .)
+    VARIAVEL        reduce using rule 15 (expression -> term .)
+    NUMERO          reduce using rule 15 (expression -> term .)
+    PARENTESE_E     reduce using rule 15 (expression -> term .)
+    FRASE           reduce using rule 15 (expression -> term .)
+    $end            reduce using rule 15 (expression -> term .)
+    CHAVE_D         reduce using rule 15 (expression -> term .)
+    VEZES           shift and go to state 34
+    DIVIDIDO        shift and go to state 35
 
 
 state 14
 
-    (28) factor -> PARENTESE_E . expression PARENTESE_D
-    (14) expression -> . term
-    (15) expression -> . expression MAIS term
-    (16) expression -> . expression MENOS term
-    (17) expression -> . comparison
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (18) comparison -> . expression MAIOR term
-    (19) comparison -> . expression MENOR term
-    (20) comparison -> . expression MAIOR_IGUAL term
-    (21) comparison -> . expression MENOR_IGUAL term
-    (22) comparison -> . expression IGUAL term
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (18) expression -> comparison .
 
-    NUMERO          shift and go to state 25
-    VARIAVEL        shift and go to state 28
-    PARENTESE_E     shift and go to state 14
+    NEWLINE         reduce using rule 18 (expression -> comparison .)
+    MAIS            reduce using rule 18 (expression -> comparison .)
+    MENOS           reduce using rule 18 (expression -> comparison .)
+    MAIOR           reduce using rule 18 (expression -> comparison .)
+    MENOR           reduce using rule 18 (expression -> comparison .)
+    MAIOR_IGUAL     reduce using rule 18 (expression -> comparison .)
+    MENOR_IGUAL     reduce using rule 18 (expression -> comparison .)
+    IGUAL           reduce using rule 18 (expression -> comparison .)
+    PARENTESE_D     reduce using rule 18 (expression -> comparison .)
+    ENQUANTO        reduce using rule 18 (expression -> comparison .)
+    SE              reduce using rule 18 (expression -> comparison .)
+    QUEBRE          reduce using rule 18 (expression -> comparison .)
+    RETORNE         reduce using rule 18 (expression -> comparison .)
+    VARIAVEL        reduce using rule 18 (expression -> comparison .)
+    NUMERO          reduce using rule 18 (expression -> comparison .)
+    PARENTESE_E     reduce using rule 18 (expression -> comparison .)
+    FRASE           reduce using rule 18 (expression -> comparison .)
+    $end            reduce using rule 18 (expression -> comparison .)
+    CHAVE_D         reduce using rule 18 (expression -> comparison .)
 
-    expression                     shift and go to state 27
-    term                           shift and go to state 22
-    comparison                     shift and go to state 23
-    factor                         shift and go to state 24
 
 state 15
 
-    (2) function -> FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements . CHAVE_D
+    (24) term -> factor .
 
-    CHAVE_D         shift and go to state 29
+    VEZES           reduce using rule 24 (term -> factor .)
+    DIVIDIDO        reduce using rule 24 (term -> factor .)
+    NEWLINE         reduce using rule 24 (term -> factor .)
+    MAIS            reduce using rule 24 (term -> factor .)
+    MENOS           reduce using rule 24 (term -> factor .)
+    MAIOR           reduce using rule 24 (term -> factor .)
+    MENOR           reduce using rule 24 (term -> factor .)
+    MAIOR_IGUAL     reduce using rule 24 (term -> factor .)
+    MENOR_IGUAL     reduce using rule 24 (term -> factor .)
+    IGUAL           reduce using rule 24 (term -> factor .)
+    PARENTESE_D     reduce using rule 24 (term -> factor .)
+    ENQUANTO        reduce using rule 24 (term -> factor .)
+    SE              reduce using rule 24 (term -> factor .)
+    QUEBRE          reduce using rule 24 (term -> factor .)
+    RETORNE         reduce using rule 24 (term -> factor .)
+    VARIAVEL        reduce using rule 24 (term -> factor .)
+    NUMERO          reduce using rule 24 (term -> factor .)
+    PARENTESE_E     reduce using rule 24 (term -> factor .)
+    FRASE           reduce using rule 24 (term -> factor .)
+    $end            reduce using rule 24 (term -> factor .)
+    CHAVE_D         reduce using rule 24 (term -> factor .)
 
 
 state 16
 
-    (6) statements -> statement .
-    (7) statements -> statement . statements
-    (6) statements -> . statement
-    (7) statements -> . statement statements
-    (8) statement -> . expression
-    (9) statement -> . ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
-    (10) statement -> . SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
-    (11) statement -> . QUEBRE
-    (12) statement -> . RETORNE expression
-    (13) statement -> . VARIAVEL RECEBE expression
-    (14) expression -> . term
-    (15) expression -> . expression MAIS term
-    (16) expression -> . expression MENOS term
-    (17) expression -> . comparison
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (18) comparison -> . expression MAIOR term
-    (19) comparison -> . expression MENOR term
-    (20) comparison -> . expression MAIOR_IGUAL term
-    (21) comparison -> . expression MENOR_IGUAL term
-    (22) comparison -> . expression IGUAL term
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (27) factor -> NUMERO .
 
-    CHAVE_D         reduce using rule 6 (statements -> statement .)
-    ENQUANTO        shift and go to state 18
-    SE              shift and go to state 19
-    QUEBRE          shift and go to state 20
-    RETORNE         shift and go to state 21
-    VARIAVEL        shift and go to state 13
-    NUMERO          shift and go to state 25
-    PARENTESE_E     shift and go to state 14
+    VEZES           reduce using rule 27 (factor -> NUMERO .)
+    DIVIDIDO        reduce using rule 27 (factor -> NUMERO .)
+    NEWLINE         reduce using rule 27 (factor -> NUMERO .)
+    MAIS            reduce using rule 27 (factor -> NUMERO .)
+    MENOS           reduce using rule 27 (factor -> NUMERO .)
+    MAIOR           reduce using rule 27 (factor -> NUMERO .)
+    MENOR           reduce using rule 27 (factor -> NUMERO .)
+    MAIOR_IGUAL     reduce using rule 27 (factor -> NUMERO .)
+    MENOR_IGUAL     reduce using rule 27 (factor -> NUMERO .)
+    IGUAL           reduce using rule 27 (factor -> NUMERO .)
+    PARENTESE_D     reduce using rule 27 (factor -> NUMERO .)
+    ENQUANTO        reduce using rule 27 (factor -> NUMERO .)
+    SE              reduce using rule 27 (factor -> NUMERO .)
+    QUEBRE          reduce using rule 27 (factor -> NUMERO .)
+    RETORNE         reduce using rule 27 (factor -> NUMERO .)
+    VARIAVEL        reduce using rule 27 (factor -> NUMERO .)
+    NUMERO          reduce using rule 27 (factor -> NUMERO .)
+    PARENTESE_E     reduce using rule 27 (factor -> NUMERO .)
+    FRASE           reduce using rule 27 (factor -> NUMERO .)
+    $end            reduce using rule 27 (factor -> NUMERO .)
+    CHAVE_D         reduce using rule 27 (factor -> NUMERO .)
 
-    statement                      shift and go to state 16
-    statements                     shift and go to state 30
-    expression                     shift and go to state 17
-    term                           shift and go to state 22
-    comparison                     shift and go to state 23
-    factor                         shift and go to state 24
 
 state 17
 
-    (8) statement -> expression .
-    (15) expression -> expression . MAIS term
-    (16) expression -> expression . MENOS term
-    (18) comparison -> expression . MAIOR term
-    (19) comparison -> expression . MENOR term
-    (20) comparison -> expression . MAIOR_IGUAL term
-    (21) comparison -> expression . MENOR_IGUAL term
-    (22) comparison -> expression . IGUAL term
+    (30) factor -> FRASE .
 
-    ENQUANTO        reduce using rule 8 (statement -> expression .)
-    SE              reduce using rule 8 (statement -> expression .)
-    QUEBRE          reduce using rule 8 (statement -> expression .)
-    RETORNE         reduce using rule 8 (statement -> expression .)
-    VARIAVEL        reduce using rule 8 (statement -> expression .)
-    NUMERO          reduce using rule 8 (statement -> expression .)
-    PARENTESE_E     reduce using rule 8 (statement -> expression .)
-    CHAVE_D         reduce using rule 8 (statement -> expression .)
-    MAIS            shift and go to state 31
-    MENOS           shift and go to state 32
-    MAIOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAIOR_IGUAL     shift and go to state 35
-    MENOR_IGUAL     shift and go to state 36
-    IGUAL           shift and go to state 37
+    VEZES           reduce using rule 30 (factor -> FRASE .)
+    DIVIDIDO        reduce using rule 30 (factor -> FRASE .)
+    NEWLINE         reduce using rule 30 (factor -> FRASE .)
+    MAIS            reduce using rule 30 (factor -> FRASE .)
+    MENOS           reduce using rule 30 (factor -> FRASE .)
+    MAIOR           reduce using rule 30 (factor -> FRASE .)
+    MENOR           reduce using rule 30 (factor -> FRASE .)
+    MAIOR_IGUAL     reduce using rule 30 (factor -> FRASE .)
+    MENOR_IGUAL     reduce using rule 30 (factor -> FRASE .)
+    IGUAL           reduce using rule 30 (factor -> FRASE .)
+    PARENTESE_D     reduce using rule 30 (factor -> FRASE .)
+    ENQUANTO        reduce using rule 30 (factor -> FRASE .)
+    SE              reduce using rule 30 (factor -> FRASE .)
+    QUEBRE          reduce using rule 30 (factor -> FRASE .)
+    RETORNE         reduce using rule 30 (factor -> FRASE .)
+    VARIAVEL        reduce using rule 30 (factor -> FRASE .)
+    NUMERO          reduce using rule 30 (factor -> FRASE .)
+    PARENTESE_E     reduce using rule 30 (factor -> FRASE .)
+    FRASE           reduce using rule 30 (factor -> FRASE .)
+    $end            reduce using rule 30 (factor -> FRASE .)
+    CHAVE_D         reduce using rule 30 (factor -> FRASE .)
 
 
 state 18
 
-    (9) statement -> ENQUANTO . PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
+    (3) function -> FUNCAO VARIAVEL . PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_D
 
-    PARENTESE_E     shift and go to state 38
+    PARENTESE_E     shift and go to state 36
 
 
 state 19
 
-    (10) statement -> SE . PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
+    (14) statement -> VARIAVEL RECEBE . expression
+    (15) expression -> . term
+    (16) expression -> . expression MAIS term
+    (17) expression -> . expression MENOS term
+    (18) expression -> . comparison
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (19) comparison -> . expression MAIOR term
+    (20) comparison -> . expression MENOR term
+    (21) comparison -> . expression MAIOR_IGUAL term
+    (22) comparison -> . expression MENOR_IGUAL term
+    (23) comparison -> . expression IGUAL term
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    PARENTESE_E     shift and go to state 39
+    NUMERO          shift and go to state 16
+    VARIAVEL        shift and go to state 21
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
+    expression                     shift and go to state 37
+    term                           shift and go to state 13
+    comparison                     shift and go to state 14
+    factor                         shift and go to state 15
 
 state 20
 
-    (11) statement -> QUEBRE .
+    (29) factor -> PARENTESE_E expression . PARENTESE_D
+    (16) expression -> expression . MAIS term
+    (17) expression -> expression . MENOS term
+    (19) comparison -> expression . MAIOR term
+    (20) comparison -> expression . MENOR term
+    (21) comparison -> expression . MAIOR_IGUAL term
+    (22) comparison -> expression . MENOR_IGUAL term
+    (23) comparison -> expression . IGUAL term
 
-    ENQUANTO        reduce using rule 11 (statement -> QUEBRE .)
-    SE              reduce using rule 11 (statement -> QUEBRE .)
-    QUEBRE          reduce using rule 11 (statement -> QUEBRE .)
-    RETORNE         reduce using rule 11 (statement -> QUEBRE .)
-    VARIAVEL        reduce using rule 11 (statement -> QUEBRE .)
-    NUMERO          reduce using rule 11 (statement -> QUEBRE .)
-    PARENTESE_E     reduce using rule 11 (statement -> QUEBRE .)
-    CHAVE_D         reduce using rule 11 (statement -> QUEBRE .)
+    PARENTESE_D     shift and go to state 38
+    MAIS            shift and go to state 24
+    MENOS           shift and go to state 25
+    MAIOR           shift and go to state 26
+    MENOR           shift and go to state 27
+    MAIOR_IGUAL     shift and go to state 28
+    MENOR_IGUAL     shift and go to state 29
+    IGUAL           shift and go to state 30
 
 
 state 21
 
-    (12) statement -> RETORNE . expression
-    (14) expression -> . term
-    (15) expression -> . expression MAIS term
-    (16) expression -> . expression MENOS term
-    (17) expression -> . comparison
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (18) comparison -> . expression MAIOR term
-    (19) comparison -> . expression MENOR term
-    (20) comparison -> . expression MAIOR_IGUAL term
-    (21) comparison -> . expression MENOR_IGUAL term
-    (22) comparison -> . expression IGUAL term
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (28) factor -> VARIAVEL .
 
-    NUMERO          shift and go to state 25
-    VARIAVEL        shift and go to state 28
-    PARENTESE_E     shift and go to state 14
+    VEZES           reduce using rule 28 (factor -> VARIAVEL .)
+    DIVIDIDO        reduce using rule 28 (factor -> VARIAVEL .)
+    PARENTESE_D     reduce using rule 28 (factor -> VARIAVEL .)
+    MAIS            reduce using rule 28 (factor -> VARIAVEL .)
+    MENOS           reduce using rule 28 (factor -> VARIAVEL .)
+    MAIOR           reduce using rule 28 (factor -> VARIAVEL .)
+    MENOR           reduce using rule 28 (factor -> VARIAVEL .)
+    MAIOR_IGUAL     reduce using rule 28 (factor -> VARIAVEL .)
+    MENOR_IGUAL     reduce using rule 28 (factor -> VARIAVEL .)
+    IGUAL           reduce using rule 28 (factor -> VARIAVEL .)
+    ENQUANTO        reduce using rule 28 (factor -> VARIAVEL .)
+    SE              reduce using rule 28 (factor -> VARIAVEL .)
+    QUEBRE          reduce using rule 28 (factor -> VARIAVEL .)
+    RETORNE         reduce using rule 28 (factor -> VARIAVEL .)
+    VARIAVEL        reduce using rule 28 (factor -> VARIAVEL .)
+    NUMERO          reduce using rule 28 (factor -> VARIAVEL .)
+    PARENTESE_E     reduce using rule 28 (factor -> VARIAVEL .)
+    FRASE           reduce using rule 28 (factor -> VARIAVEL .)
+    $end            reduce using rule 28 (factor -> VARIAVEL .)
+    CHAVE_D         reduce using rule 28 (factor -> VARIAVEL .)
+    NEWLINE         reduce using rule 28 (factor -> VARIAVEL .)
 
-    expression                     shift and go to state 40
-    term                           shift and go to state 22
-    comparison                     shift and go to state 23
-    factor                         shift and go to state 24
 
 state 22
 
-    (14) expression -> term .
-    (24) term -> term . VEZES factor
-    (25) term -> term . DIVIDIDO factor
+    (8) statements -> statement statements .
 
-    MAIS            reduce using rule 14 (expression -> term .)
-    MENOS           reduce using rule 14 (expression -> term .)
-    MAIOR           reduce using rule 14 (expression -> term .)
-    MENOR           reduce using rule 14 (expression -> term .)
-    MAIOR_IGUAL     reduce using rule 14 (expression -> term .)
-    MENOR_IGUAL     reduce using rule 14 (expression -> term .)
-    IGUAL           reduce using rule 14 (expression -> term .)
-    ENQUANTO        reduce using rule 14 (expression -> term .)
-    SE              reduce using rule 14 (expression -> term .)
-    QUEBRE          reduce using rule 14 (expression -> term .)
-    RETORNE         reduce using rule 14 (expression -> term .)
-    VARIAVEL        reduce using rule 14 (expression -> term .)
-    NUMERO          reduce using rule 14 (expression -> term .)
-    PARENTESE_E     reduce using rule 14 (expression -> term .)
-    CHAVE_D         reduce using rule 14 (expression -> term .)
-    PARENTESE_D     reduce using rule 14 (expression -> term .)
-    VEZES           shift and go to state 41
-    DIVIDIDO        shift and go to state 42
+    $end            reduce using rule 8 (statements -> statement statements .)
+    CHAVE_D         reduce using rule 8 (statements -> statement statements .)
 
 
 state 23
 
-    (17) expression -> comparison .
+    (9) statement -> expression NEWLINE .
 
-    MAIS            reduce using rule 17 (expression -> comparison .)
-    MENOS           reduce using rule 17 (expression -> comparison .)
-    MAIOR           reduce using rule 17 (expression -> comparison .)
-    MENOR           reduce using rule 17 (expression -> comparison .)
-    MAIOR_IGUAL     reduce using rule 17 (expression -> comparison .)
-    MENOR_IGUAL     reduce using rule 17 (expression -> comparison .)
-    IGUAL           reduce using rule 17 (expression -> comparison .)
-    ENQUANTO        reduce using rule 17 (expression -> comparison .)
-    SE              reduce using rule 17 (expression -> comparison .)
-    QUEBRE          reduce using rule 17 (expression -> comparison .)
-    RETORNE         reduce using rule 17 (expression -> comparison .)
-    VARIAVEL        reduce using rule 17 (expression -> comparison .)
-    NUMERO          reduce using rule 17 (expression -> comparison .)
-    PARENTESE_E     reduce using rule 17 (expression -> comparison .)
-    CHAVE_D         reduce using rule 17 (expression -> comparison .)
-    PARENTESE_D     reduce using rule 17 (expression -> comparison .)
+    ENQUANTO        reduce using rule 9 (statement -> expression NEWLINE .)
+    SE              reduce using rule 9 (statement -> expression NEWLINE .)
+    QUEBRE          reduce using rule 9 (statement -> expression NEWLINE .)
+    RETORNE         reduce using rule 9 (statement -> expression NEWLINE .)
+    VARIAVEL        reduce using rule 9 (statement -> expression NEWLINE .)
+    NUMERO          reduce using rule 9 (statement -> expression NEWLINE .)
+    PARENTESE_E     reduce using rule 9 (statement -> expression NEWLINE .)
+    FRASE           reduce using rule 9 (statement -> expression NEWLINE .)
+    $end            reduce using rule 9 (statement -> expression NEWLINE .)
+    CHAVE_D         reduce using rule 9 (statement -> expression NEWLINE .)
 
 
 state 24
 
-    (23) term -> factor .
+    (16) expression -> expression MAIS . term
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    VEZES           reduce using rule 23 (term -> factor .)
-    DIVIDIDO        reduce using rule 23 (term -> factor .)
-    MAIS            reduce using rule 23 (term -> factor .)
-    MENOS           reduce using rule 23 (term -> factor .)
-    MAIOR           reduce using rule 23 (term -> factor .)
-    MENOR           reduce using rule 23 (term -> factor .)
-    MAIOR_IGUAL     reduce using rule 23 (term -> factor .)
-    MENOR_IGUAL     reduce using rule 23 (term -> factor .)
-    IGUAL           reduce using rule 23 (term -> factor .)
-    ENQUANTO        reduce using rule 23 (term -> factor .)
-    SE              reduce using rule 23 (term -> factor .)
-    QUEBRE          reduce using rule 23 (term -> factor .)
-    RETORNE         reduce using rule 23 (term -> factor .)
-    VARIAVEL        reduce using rule 23 (term -> factor .)
-    NUMERO          reduce using rule 23 (term -> factor .)
-    PARENTESE_E     reduce using rule 23 (term -> factor .)
-    CHAVE_D         reduce using rule 23 (term -> factor .)
-    PARENTESE_D     reduce using rule 23 (term -> factor .)
+    NUMERO          shift and go to state 16
+    VARIAVEL        shift and go to state 21
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
+    term                           shift and go to state 39
+    factor                         shift and go to state 15
 
 state 25
 
-    (26) factor -> NUMERO .
+    (17) expression -> expression MENOS . term
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    VEZES           reduce using rule 26 (factor -> NUMERO .)
-    DIVIDIDO        reduce using rule 26 (factor -> NUMERO .)
-    MAIS            reduce using rule 26 (factor -> NUMERO .)
-    MENOS           reduce using rule 26 (factor -> NUMERO .)
-    MAIOR           reduce using rule 26 (factor -> NUMERO .)
-    MENOR           reduce using rule 26 (factor -> NUMERO .)
-    MAIOR_IGUAL     reduce using rule 26 (factor -> NUMERO .)
-    MENOR_IGUAL     reduce using rule 26 (factor -> NUMERO .)
-    IGUAL           reduce using rule 26 (factor -> NUMERO .)
-    ENQUANTO        reduce using rule 26 (factor -> NUMERO .)
-    SE              reduce using rule 26 (factor -> NUMERO .)
-    QUEBRE          reduce using rule 26 (factor -> NUMERO .)
-    RETORNE         reduce using rule 26 (factor -> NUMERO .)
-    VARIAVEL        reduce using rule 26 (factor -> NUMERO .)
-    NUMERO          reduce using rule 26 (factor -> NUMERO .)
-    PARENTESE_E     reduce using rule 26 (factor -> NUMERO .)
-    CHAVE_D         reduce using rule 26 (factor -> NUMERO .)
-    PARENTESE_D     reduce using rule 26 (factor -> NUMERO .)
+    NUMERO          shift and go to state 16
+    VARIAVEL        shift and go to state 21
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
+    term                           shift and go to state 40
+    factor                         shift and go to state 15
 
 state 26
 
-    (13) statement -> VARIAVEL RECEBE . expression
-    (14) expression -> . term
-    (15) expression -> . expression MAIS term
-    (16) expression -> . expression MENOS term
-    (17) expression -> . comparison
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (18) comparison -> . expression MAIOR term
-    (19) comparison -> . expression MENOR term
-    (20) comparison -> . expression MAIOR_IGUAL term
-    (21) comparison -> . expression MENOR_IGUAL term
-    (22) comparison -> . expression IGUAL term
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (19) comparison -> expression MAIOR . term
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    NUMERO          shift and go to state 25
-    VARIAVEL        shift and go to state 28
-    PARENTESE_E     shift and go to state 14
+    NUMERO          shift and go to state 16
+    VARIAVEL        shift and go to state 21
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
-    expression                     shift and go to state 43
-    term                           shift and go to state 22
-    comparison                     shift and go to state 23
-    factor                         shift and go to state 24
+    term                           shift and go to state 41
+    factor                         shift and go to state 15
 
 state 27
 
-    (28) factor -> PARENTESE_E expression . PARENTESE_D
-    (15) expression -> expression . MAIS term
-    (16) expression -> expression . MENOS term
-    (18) comparison -> expression . MAIOR term
-    (19) comparison -> expression . MENOR term
-    (20) comparison -> expression . MAIOR_IGUAL term
-    (21) comparison -> expression . MENOR_IGUAL term
-    (22) comparison -> expression . IGUAL term
+    (20) comparison -> expression MENOR . term
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    PARENTESE_D     shift and go to state 44
-    MAIS            shift and go to state 31
-    MENOS           shift and go to state 32
-    MAIOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAIOR_IGUAL     shift and go to state 35
-    MENOR_IGUAL     shift and go to state 36
-    IGUAL           shift and go to state 37
+    NUMERO          shift and go to state 16
+    VARIAVEL        shift and go to state 21
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
+    term                           shift and go to state 42
+    factor                         shift and go to state 15
 
 state 28
 
-    (27) factor -> VARIAVEL .
+    (21) comparison -> expression MAIOR_IGUAL . term
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    VEZES           reduce using rule 27 (factor -> VARIAVEL .)
-    DIVIDIDO        reduce using rule 27 (factor -> VARIAVEL .)
-    PARENTESE_D     reduce using rule 27 (factor -> VARIAVEL .)
-    MAIS            reduce using rule 27 (factor -> VARIAVEL .)
-    MENOS           reduce using rule 27 (factor -> VARIAVEL .)
-    MAIOR           reduce using rule 27 (factor -> VARIAVEL .)
-    MENOR           reduce using rule 27 (factor -> VARIAVEL .)
-    MAIOR_IGUAL     reduce using rule 27 (factor -> VARIAVEL .)
-    MENOR_IGUAL     reduce using rule 27 (factor -> VARIAVEL .)
-    IGUAL           reduce using rule 27 (factor -> VARIAVEL .)
-    ENQUANTO        reduce using rule 27 (factor -> VARIAVEL .)
-    SE              reduce using rule 27 (factor -> VARIAVEL .)
-    QUEBRE          reduce using rule 27 (factor -> VARIAVEL .)
-    RETORNE         reduce using rule 27 (factor -> VARIAVEL .)
-    VARIAVEL        reduce using rule 27 (factor -> VARIAVEL .)
-    NUMERO          reduce using rule 27 (factor -> VARIAVEL .)
-    PARENTESE_E     reduce using rule 27 (factor -> VARIAVEL .)
-    CHAVE_D         reduce using rule 27 (factor -> VARIAVEL .)
+    NUMERO          shift and go to state 16
+    VARIAVEL        shift and go to state 21
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
+    term                           shift and go to state 43
+    factor                         shift and go to state 15
 
 state 29
 
-    (2) function -> FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_D .
+    (22) comparison -> expression MENOR_IGUAL . term
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    $end            reduce using rule 2 (function -> FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_D .)
+    NUMERO          shift and go to state 16
+    VARIAVEL        shift and go to state 21
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
+    term                           shift and go to state 44
+    factor                         shift and go to state 15
 
 state 30
 
-    (7) statements -> statement statements .
+    (23) comparison -> expression IGUAL . term
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    CHAVE_D         reduce using rule 7 (statements -> statement statements .)
+    NUMERO          shift and go to state 16
+    VARIAVEL        shift and go to state 21
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
+    term                           shift and go to state 45
+    factor                         shift and go to state 15
 
 state 31
 
-    (15) expression -> expression MAIS . term
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (10) statement -> ENQUANTO PARENTESE_E . expression PARENTESE_D CHAVE_E statements CHAVE_D
+    (15) expression -> . term
+    (16) expression -> . expression MAIS term
+    (17) expression -> . expression MENOS term
+    (18) expression -> . comparison
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (19) comparison -> . expression MAIOR term
+    (20) comparison -> . expression MENOR term
+    (21) comparison -> . expression MAIOR_IGUAL term
+    (22) comparison -> . expression MENOR_IGUAL term
+    (23) comparison -> . expression IGUAL term
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    NUMERO          shift and go to state 25
-    VARIAVEL        shift and go to state 28
-    PARENTESE_E     shift and go to state 14
+    NUMERO          shift and go to state 16
+    VARIAVEL        shift and go to state 21
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
-    term                           shift and go to state 45
-    factor                         shift and go to state 24
+    expression                     shift and go to state 46
+    term                           shift and go to state 13
+    comparison                     shift and go to state 14
+    factor                         shift and go to state 15
 
 state 32
 
-    (16) expression -> expression MENOS . term
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (11) statement -> SE PARENTESE_E . expression PARENTESE_D CHAVE_E statements CHAVE_D
+    (15) expression -> . term
+    (16) expression -> . expression MAIS term
+    (17) expression -> . expression MENOS term
+    (18) expression -> . comparison
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (19) comparison -> . expression MAIOR term
+    (20) comparison -> . expression MENOR term
+    (21) comparison -> . expression MAIOR_IGUAL term
+    (22) comparison -> . expression MENOR_IGUAL term
+    (23) comparison -> . expression IGUAL term
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    NUMERO          shift and go to state 25
-    VARIAVEL        shift and go to state 28
-    PARENTESE_E     shift and go to state 14
+    NUMERO          shift and go to state 16
+    VARIAVEL        shift and go to state 21
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
-    term                           shift and go to state 46
-    factor                         shift and go to state 24
+    expression                     shift and go to state 47
+    term                           shift and go to state 13
+    comparison                     shift and go to state 14
+    factor                         shift and go to state 15
 
 state 33
 
-    (18) comparison -> expression MAIOR . term
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (13) statement -> RETORNE expression .
+    (16) expression -> expression . MAIS term
+    (17) expression -> expression . MENOS term
+    (19) comparison -> expression . MAIOR term
+    (20) comparison -> expression . MENOR term
+    (21) comparison -> expression . MAIOR_IGUAL term
+    (22) comparison -> expression . MENOR_IGUAL term
+    (23) comparison -> expression . IGUAL term
 
-    NUMERO          shift and go to state 25
-    VARIAVEL        shift and go to state 28
-    PARENTESE_E     shift and go to state 14
+    ENQUANTO        reduce using rule 13 (statement -> RETORNE expression .)
+    SE              reduce using rule 13 (statement -> RETORNE expression .)
+    QUEBRE          reduce using rule 13 (statement -> RETORNE expression .)
+    RETORNE         reduce using rule 13 (statement -> RETORNE expression .)
+    VARIAVEL        reduce using rule 13 (statement -> RETORNE expression .)
+    NUMERO          reduce using rule 13 (statement -> RETORNE expression .)
+    PARENTESE_E     reduce using rule 13 (statement -> RETORNE expression .)
+    FRASE           reduce using rule 13 (statement -> RETORNE expression .)
+    $end            reduce using rule 13 (statement -> RETORNE expression .)
+    CHAVE_D         reduce using rule 13 (statement -> RETORNE expression .)
+    MAIS            shift and go to state 24
+    MENOS           shift and go to state 25
+    MAIOR           shift and go to state 26
+    MENOR           shift and go to state 27
+    MAIOR_IGUAL     shift and go to state 28
+    MENOR_IGUAL     shift and go to state 29
+    IGUAL           shift and go to state 30
 
-    term                           shift and go to state 47
-    factor                         shift and go to state 24
 
 state 34
 
-    (19) comparison -> expression MENOR . term
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (25) term -> term VEZES . factor
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    NUMERO          shift and go to state 25
-    VARIAVEL        shift and go to state 28
-    PARENTESE_E     shift and go to state 14
+    NUMERO          shift and go to state 16
+    VARIAVEL        shift and go to state 21
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
-    term                           shift and go to state 48
-    factor                         shift and go to state 24
+    factor                         shift and go to state 48
 
 state 35
 
-    (20) comparison -> expression MAIOR_IGUAL . term
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (26) term -> term DIVIDIDO . factor
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    NUMERO          shift and go to state 25
-    VARIAVEL        shift and go to state 28
-    PARENTESE_E     shift and go to state 14
+    NUMERO          shift and go to state 16
+    VARIAVEL        shift and go to state 21
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
-    term                           shift and go to state 49
-    factor                         shift and go to state 24
+    factor                         shift and go to state 49
 
 state 36
 
-    (21) comparison -> expression MENOR_IGUAL . term
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (3) function -> FUNCAO VARIAVEL PARENTESE_E . params PARENTESE_D CHAVE_E statements CHAVE_D
+    (4) params -> . VARIAVEL
+    (5) params -> . VARIAVEL VIRGULA params
+    (6) params -> . empty
+    (31) empty -> .
 
-    NUMERO          shift and go to state 25
-    VARIAVEL        shift and go to state 28
-    PARENTESE_E     shift and go to state 14
+    VARIAVEL        shift and go to state 50
+    PARENTESE_D     reduce using rule 31 (empty -> .)
 
-    term                           shift and go to state 50
-    factor                         shift and go to state 24
+    params                         shift and go to state 51
+    empty                          shift and go to state 52
 
 state 37
 
-    (22) comparison -> expression IGUAL . term
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (14) statement -> VARIAVEL RECEBE expression .
+    (16) expression -> expression . MAIS term
+    (17) expression -> expression . MENOS term
+    (19) comparison -> expression . MAIOR term
+    (20) comparison -> expression . MENOR term
+    (21) comparison -> expression . MAIOR_IGUAL term
+    (22) comparison -> expression . MENOR_IGUAL term
+    (23) comparison -> expression . IGUAL term
 
-    NUMERO          shift and go to state 25
-    VARIAVEL        shift and go to state 28
-    PARENTESE_E     shift and go to state 14
+    ENQUANTO        reduce using rule 14 (statement -> VARIAVEL RECEBE expression .)
+    SE              reduce using rule 14 (statement -> VARIAVEL RECEBE expression .)
+    QUEBRE          reduce using rule 14 (statement -> VARIAVEL RECEBE expression .)
+    RETORNE         reduce using rule 14 (statement -> VARIAVEL RECEBE expression .)
+    VARIAVEL        reduce using rule 14 (statement -> VARIAVEL RECEBE expression .)
+    NUMERO          reduce using rule 14 (statement -> VARIAVEL RECEBE expression .)
+    PARENTESE_E     reduce using rule 14 (statement -> VARIAVEL RECEBE expression .)
+    FRASE           reduce using rule 14 (statement -> VARIAVEL RECEBE expression .)
+    $end            reduce using rule 14 (statement -> VARIAVEL RECEBE expression .)
+    CHAVE_D         reduce using rule 14 (statement -> VARIAVEL RECEBE expression .)
+    MAIS            shift and go to state 24
+    MENOS           shift and go to state 25
+    MAIOR           shift and go to state 26
+    MENOR           shift and go to state 27
+    MAIOR_IGUAL     shift and go to state 28
+    MENOR_IGUAL     shift and go to state 29
+    IGUAL           shift and go to state 30
 
-    term                           shift and go to state 51
-    factor                         shift and go to state 24
 
 state 38
 
-    (9) statement -> ENQUANTO PARENTESE_E . expression PARENTESE_D CHAVE_E statements CHAVE_D
-    (14) expression -> . term
-    (15) expression -> . expression MAIS term
-    (16) expression -> . expression MENOS term
-    (17) expression -> . comparison
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (18) comparison -> . expression MAIOR term
-    (19) comparison -> . expression MENOR term
-    (20) comparison -> . expression MAIOR_IGUAL term
-    (21) comparison -> . expression MENOR_IGUAL term
-    (22) comparison -> . expression IGUAL term
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (29) factor -> PARENTESE_E expression PARENTESE_D .
 
-    NUMERO          shift and go to state 25
-    VARIAVEL        shift and go to state 28
-    PARENTESE_E     shift and go to state 14
+    VEZES           reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    DIVIDIDO        reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    NEWLINE         reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    MAIS            reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    MENOS           reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    MAIOR           reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    MENOR           reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    MAIOR_IGUAL     reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    MENOR_IGUAL     reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    IGUAL           reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    PARENTESE_D     reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    ENQUANTO        reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    SE              reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    QUEBRE          reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    RETORNE         reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    VARIAVEL        reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    NUMERO          reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    PARENTESE_E     reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    FRASE           reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    $end            reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
+    CHAVE_D         reduce using rule 29 (factor -> PARENTESE_E expression PARENTESE_D .)
 
-    expression                     shift and go to state 52
-    term                           shift and go to state 22
-    comparison                     shift and go to state 23
-    factor                         shift and go to state 24
 
 state 39
 
-    (10) statement -> SE PARENTESE_E . expression PARENTESE_D CHAVE_E statements CHAVE_D
-    (14) expression -> . term
-    (15) expression -> . expression MAIS term
-    (16) expression -> . expression MENOS term
-    (17) expression -> . comparison
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (18) comparison -> . expression MAIOR term
-    (19) comparison -> . expression MENOR term
-    (20) comparison -> . expression MAIOR_IGUAL term
-    (21) comparison -> . expression MENOR_IGUAL term
-    (22) comparison -> . expression IGUAL term
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (16) expression -> expression MAIS term .
+    (25) term -> term . VEZES factor
+    (26) term -> term . DIVIDIDO factor
 
-    NUMERO          shift and go to state 25
-    VARIAVEL        shift and go to state 28
-    PARENTESE_E     shift and go to state 14
+    NEWLINE         reduce using rule 16 (expression -> expression MAIS term .)
+    MAIS            reduce using rule 16 (expression -> expression MAIS term .)
+    MENOS           reduce using rule 16 (expression -> expression MAIS term .)
+    MAIOR           reduce using rule 16 (expression -> expression MAIS term .)
+    MENOR           reduce using rule 16 (expression -> expression MAIS term .)
+    MAIOR_IGUAL     reduce using rule 16 (expression -> expression MAIS term .)
+    MENOR_IGUAL     reduce using rule 16 (expression -> expression MAIS term .)
+    IGUAL           reduce using rule 16 (expression -> expression MAIS term .)
+    PARENTESE_D     reduce using rule 16 (expression -> expression MAIS term .)
+    ENQUANTO        reduce using rule 16 (expression -> expression MAIS term .)
+    SE              reduce using rule 16 (expression -> expression MAIS term .)
+    QUEBRE          reduce using rule 16 (expression -> expression MAIS term .)
+    RETORNE         reduce using rule 16 (expression -> expression MAIS term .)
+    VARIAVEL        reduce using rule 16 (expression -> expression MAIS term .)
+    NUMERO          reduce using rule 16 (expression -> expression MAIS term .)
+    PARENTESE_E     reduce using rule 16 (expression -> expression MAIS term .)
+    FRASE           reduce using rule 16 (expression -> expression MAIS term .)
+    $end            reduce using rule 16 (expression -> expression MAIS term .)
+    CHAVE_D         reduce using rule 16 (expression -> expression MAIS term .)
+    VEZES           shift and go to state 34
+    DIVIDIDO        shift and go to state 35
 
-    expression                     shift and go to state 53
-    term                           shift and go to state 22
-    comparison                     shift and go to state 23
-    factor                         shift and go to state 24
 
 state 40
 
-    (12) statement -> RETORNE expression .
-    (15) expression -> expression . MAIS term
-    (16) expression -> expression . MENOS term
-    (18) comparison -> expression . MAIOR term
-    (19) comparison -> expression . MENOR term
-    (20) comparison -> expression . MAIOR_IGUAL term
-    (21) comparison -> expression . MENOR_IGUAL term
-    (22) comparison -> expression . IGUAL term
+    (17) expression -> expression MENOS term .
+    (25) term -> term . VEZES factor
+    (26) term -> term . DIVIDIDO factor
 
-    ENQUANTO        reduce using rule 12 (statement -> RETORNE expression .)
-    SE              reduce using rule 12 (statement -> RETORNE expression .)
-    QUEBRE          reduce using rule 12 (statement -> RETORNE expression .)
-    RETORNE         reduce using rule 12 (statement -> RETORNE expression .)
-    VARIAVEL        reduce using rule 12 (statement -> RETORNE expression .)
-    NUMERO          reduce using rule 12 (statement -> RETORNE expression .)
-    PARENTESE_E     reduce using rule 12 (statement -> RETORNE expression .)
-    CHAVE_D         reduce using rule 12 (statement -> RETORNE expression .)
-    MAIS            shift and go to state 31
-    MENOS           shift and go to state 32
-    MAIOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAIOR_IGUAL     shift and go to state 35
-    MENOR_IGUAL     shift and go to state 36
-    IGUAL           shift and go to state 37
+    NEWLINE         reduce using rule 17 (expression -> expression MENOS term .)
+    MAIS            reduce using rule 17 (expression -> expression MENOS term .)
+    MENOS           reduce using rule 17 (expression -> expression MENOS term .)
+    MAIOR           reduce using rule 17 (expression -> expression MENOS term .)
+    MENOR           reduce using rule 17 (expression -> expression MENOS term .)
+    MAIOR_IGUAL     reduce using rule 17 (expression -> expression MENOS term .)
+    MENOR_IGUAL     reduce using rule 17 (expression -> expression MENOS term .)
+    IGUAL           reduce using rule 17 (expression -> expression MENOS term .)
+    PARENTESE_D     reduce using rule 17 (expression -> expression MENOS term .)
+    ENQUANTO        reduce using rule 17 (expression -> expression MENOS term .)
+    SE              reduce using rule 17 (expression -> expression MENOS term .)
+    QUEBRE          reduce using rule 17 (expression -> expression MENOS term .)
+    RETORNE         reduce using rule 17 (expression -> expression MENOS term .)
+    VARIAVEL        reduce using rule 17 (expression -> expression MENOS term .)
+    NUMERO          reduce using rule 17 (expression -> expression MENOS term .)
+    PARENTESE_E     reduce using rule 17 (expression -> expression MENOS term .)
+    FRASE           reduce using rule 17 (expression -> expression MENOS term .)
+    $end            reduce using rule 17 (expression -> expression MENOS term .)
+    CHAVE_D         reduce using rule 17 (expression -> expression MENOS term .)
+    VEZES           shift and go to state 34
+    DIVIDIDO        shift and go to state 35
 
 
 state 41
 
-    (24) term -> term VEZES . factor
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (19) comparison -> expression MAIOR term .
+    (25) term -> term . VEZES factor
+    (26) term -> term . DIVIDIDO factor
 
-    NUMERO          shift and go to state 25
-    VARIAVEL        shift and go to state 28
-    PARENTESE_E     shift and go to state 14
+    NEWLINE         reduce using rule 19 (comparison -> expression MAIOR term .)
+    MAIS            reduce using rule 19 (comparison -> expression MAIOR term .)
+    MENOS           reduce using rule 19 (comparison -> expression MAIOR term .)
+    MAIOR           reduce using rule 19 (comparison -> expression MAIOR term .)
+    MENOR           reduce using rule 19 (comparison -> expression MAIOR term .)
+    MAIOR_IGUAL     reduce using rule 19 (comparison -> expression MAIOR term .)
+    MENOR_IGUAL     reduce using rule 19 (comparison -> expression MAIOR term .)
+    IGUAL           reduce using rule 19 (comparison -> expression MAIOR term .)
+    PARENTESE_D     reduce using rule 19 (comparison -> expression MAIOR term .)
+    ENQUANTO        reduce using rule 19 (comparison -> expression MAIOR term .)
+    SE              reduce using rule 19 (comparison -> expression MAIOR term .)
+    QUEBRE          reduce using rule 19 (comparison -> expression MAIOR term .)
+    RETORNE         reduce using rule 19 (comparison -> expression MAIOR term .)
+    VARIAVEL        reduce using rule 19 (comparison -> expression MAIOR term .)
+    NUMERO          reduce using rule 19 (comparison -> expression MAIOR term .)
+    PARENTESE_E     reduce using rule 19 (comparison -> expression MAIOR term .)
+    FRASE           reduce using rule 19 (comparison -> expression MAIOR term .)
+    $end            reduce using rule 19 (comparison -> expression MAIOR term .)
+    CHAVE_D         reduce using rule 19 (comparison -> expression MAIOR term .)
+    VEZES           shift and go to state 34
+    DIVIDIDO        shift and go to state 35
 
-    factor                         shift and go to state 54
 
 state 42
 
-    (25) term -> term DIVIDIDO . factor
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (20) comparison -> expression MENOR term .
+    (25) term -> term . VEZES factor
+    (26) term -> term . DIVIDIDO factor
 
-    NUMERO          shift and go to state 25
-    VARIAVEL        shift and go to state 28
-    PARENTESE_E     shift and go to state 14
+    NEWLINE         reduce using rule 20 (comparison -> expression MENOR term .)
+    MAIS            reduce using rule 20 (comparison -> expression MENOR term .)
+    MENOS           reduce using rule 20 (comparison -> expression MENOR term .)
+    MAIOR           reduce using rule 20 (comparison -> expression MENOR term .)
+    MENOR           reduce using rule 20 (comparison -> expression MENOR term .)
+    MAIOR_IGUAL     reduce using rule 20 (comparison -> expression MENOR term .)
+    MENOR_IGUAL     reduce using rule 20 (comparison -> expression MENOR term .)
+    IGUAL           reduce using rule 20 (comparison -> expression MENOR term .)
+    PARENTESE_D     reduce using rule 20 (comparison -> expression MENOR term .)
+    ENQUANTO        reduce using rule 20 (comparison -> expression MENOR term .)
+    SE              reduce using rule 20 (comparison -> expression MENOR term .)
+    QUEBRE          reduce using rule 20 (comparison -> expression MENOR term .)
+    RETORNE         reduce using rule 20 (comparison -> expression MENOR term .)
+    VARIAVEL        reduce using rule 20 (comparison -> expression MENOR term .)
+    NUMERO          reduce using rule 20 (comparison -> expression MENOR term .)
+    PARENTESE_E     reduce using rule 20 (comparison -> expression MENOR term .)
+    FRASE           reduce using rule 20 (comparison -> expression MENOR term .)
+    $end            reduce using rule 20 (comparison -> expression MENOR term .)
+    CHAVE_D         reduce using rule 20 (comparison -> expression MENOR term .)
+    VEZES           shift and go to state 34
+    DIVIDIDO        shift and go to state 35
 
-    factor                         shift and go to state 55
 
 state 43
 
-    (13) statement -> VARIAVEL RECEBE expression .
-    (15) expression -> expression . MAIS term
-    (16) expression -> expression . MENOS term
-    (18) comparison -> expression . MAIOR term
-    (19) comparison -> expression . MENOR term
-    (20) comparison -> expression . MAIOR_IGUAL term
-    (21) comparison -> expression . MENOR_IGUAL term
-    (22) comparison -> expression . IGUAL term
+    (21) comparison -> expression MAIOR_IGUAL term .
+    (25) term -> term . VEZES factor
+    (26) term -> term . DIVIDIDO factor
 
-    ENQUANTO        reduce using rule 13 (statement -> VARIAVEL RECEBE expression .)
-    SE              reduce using rule 13 (statement -> VARIAVEL RECEBE expression .)
-    QUEBRE          reduce using rule 13 (statement -> VARIAVEL RECEBE expression .)
-    RETORNE         reduce using rule 13 (statement -> VARIAVEL RECEBE expression .)
-    VARIAVEL        reduce using rule 13 (statement -> VARIAVEL RECEBE expression .)
-    NUMERO          reduce using rule 13 (statement -> VARIAVEL RECEBE expression .)
-    PARENTESE_E     reduce using rule 13 (statement -> VARIAVEL RECEBE expression .)
-    CHAVE_D         reduce using rule 13 (statement -> VARIAVEL RECEBE expression .)
-    MAIS            shift and go to state 31
-    MENOS           shift and go to state 32
-    MAIOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAIOR_IGUAL     shift and go to state 35
-    MENOR_IGUAL     shift and go to state 36
-    IGUAL           shift and go to state 37
+    NEWLINE         reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    MAIS            reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    MENOS           reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    MAIOR           reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    MENOR           reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    MAIOR_IGUAL     reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    MENOR_IGUAL     reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    IGUAL           reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    PARENTESE_D     reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    ENQUANTO        reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    SE              reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    QUEBRE          reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    RETORNE         reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    VARIAVEL        reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    NUMERO          reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    PARENTESE_E     reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    FRASE           reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    $end            reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    CHAVE_D         reduce using rule 21 (comparison -> expression MAIOR_IGUAL term .)
+    VEZES           shift and go to state 34
+    DIVIDIDO        shift and go to state 35
 
 
 state 44
 
-    (28) factor -> PARENTESE_E expression PARENTESE_D .
+    (22) comparison -> expression MENOR_IGUAL term .
+    (25) term -> term . VEZES factor
+    (26) term -> term . DIVIDIDO factor
 
-    VEZES           reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    DIVIDIDO        reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    MAIS            reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    MENOS           reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    MAIOR           reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    MENOR           reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    MAIOR_IGUAL     reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    MENOR_IGUAL     reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    IGUAL           reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    ENQUANTO        reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    SE              reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    QUEBRE          reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    RETORNE         reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    VARIAVEL        reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    NUMERO          reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    PARENTESE_E     reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    CHAVE_D         reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
-    PARENTESE_D     reduce using rule 28 (factor -> PARENTESE_E expression PARENTESE_D .)
+    NEWLINE         reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    MAIS            reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    MENOS           reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    MAIOR           reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    MENOR           reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    MAIOR_IGUAL     reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    MENOR_IGUAL     reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    IGUAL           reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    PARENTESE_D     reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    ENQUANTO        reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    SE              reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    QUEBRE          reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    RETORNE         reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    VARIAVEL        reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    NUMERO          reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    PARENTESE_E     reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    FRASE           reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    $end            reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    CHAVE_D         reduce using rule 22 (comparison -> expression MENOR_IGUAL term .)
+    VEZES           shift and go to state 34
+    DIVIDIDO        shift and go to state 35
 
 
 state 45
 
-    (15) expression -> expression MAIS term .
-    (24) term -> term . VEZES factor
-    (25) term -> term . DIVIDIDO factor
+    (23) comparison -> expression IGUAL term .
+    (25) term -> term . VEZES factor
+    (26) term -> term . DIVIDIDO factor
 
-    MAIS            reduce using rule 15 (expression -> expression MAIS term .)
-    MENOS           reduce using rule 15 (expression -> expression MAIS term .)
-    MAIOR           reduce using rule 15 (expression -> expression MAIS term .)
-    MENOR           reduce using rule 15 (expression -> expression MAIS term .)
-    MAIOR_IGUAL     reduce using rule 15 (expression -> expression MAIS term .)
-    MENOR_IGUAL     reduce using rule 15 (expression -> expression MAIS term .)
-    IGUAL           reduce using rule 15 (expression -> expression MAIS term .)
-    ENQUANTO        reduce using rule 15 (expression -> expression MAIS term .)
-    SE              reduce using rule 15 (expression -> expression MAIS term .)
-    QUEBRE          reduce using rule 15 (expression -> expression MAIS term .)
-    RETORNE         reduce using rule 15 (expression -> expression MAIS term .)
-    VARIAVEL        reduce using rule 15 (expression -> expression MAIS term .)
-    NUMERO          reduce using rule 15 (expression -> expression MAIS term .)
-    PARENTESE_E     reduce using rule 15 (expression -> expression MAIS term .)
-    CHAVE_D         reduce using rule 15 (expression -> expression MAIS term .)
-    PARENTESE_D     reduce using rule 15 (expression -> expression MAIS term .)
-    VEZES           shift and go to state 41
-    DIVIDIDO        shift and go to state 42
+    NEWLINE         reduce using rule 23 (comparison -> expression IGUAL term .)
+    MAIS            reduce using rule 23 (comparison -> expression IGUAL term .)
+    MENOS           reduce using rule 23 (comparison -> expression IGUAL term .)
+    MAIOR           reduce using rule 23 (comparison -> expression IGUAL term .)
+    MENOR           reduce using rule 23 (comparison -> expression IGUAL term .)
+    MAIOR_IGUAL     reduce using rule 23 (comparison -> expression IGUAL term .)
+    MENOR_IGUAL     reduce using rule 23 (comparison -> expression IGUAL term .)
+    IGUAL           reduce using rule 23 (comparison -> expression IGUAL term .)
+    PARENTESE_D     reduce using rule 23 (comparison -> expression IGUAL term .)
+    ENQUANTO        reduce using rule 23 (comparison -> expression IGUAL term .)
+    SE              reduce using rule 23 (comparison -> expression IGUAL term .)
+    QUEBRE          reduce using rule 23 (comparison -> expression IGUAL term .)
+    RETORNE         reduce using rule 23 (comparison -> expression IGUAL term .)
+    VARIAVEL        reduce using rule 23 (comparison -> expression IGUAL term .)
+    NUMERO          reduce using rule 23 (comparison -> expression IGUAL term .)
+    PARENTESE_E     reduce using rule 23 (comparison -> expression IGUAL term .)
+    FRASE           reduce using rule 23 (comparison -> expression IGUAL term .)
+    $end            reduce using rule 23 (comparison -> expression IGUAL term .)
+    CHAVE_D         reduce using rule 23 (comparison -> expression IGUAL term .)
+    VEZES           shift and go to state 34
+    DIVIDIDO        shift and go to state 35
 
 
 state 46
 
-    (16) expression -> expression MENOS term .
-    (24) term -> term . VEZES factor
-    (25) term -> term . DIVIDIDO factor
+    (10) statement -> ENQUANTO PARENTESE_E expression . PARENTESE_D CHAVE_E statements CHAVE_D
+    (16) expression -> expression . MAIS term
+    (17) expression -> expression . MENOS term
+    (19) comparison -> expression . MAIOR term
+    (20) comparison -> expression . MENOR term
+    (21) comparison -> expression . MAIOR_IGUAL term
+    (22) comparison -> expression . MENOR_IGUAL term
+    (23) comparison -> expression . IGUAL term
 
-    MAIS            reduce using rule 16 (expression -> expression MENOS term .)
-    MENOS           reduce using rule 16 (expression -> expression MENOS term .)
-    MAIOR           reduce using rule 16 (expression -> expression MENOS term .)
-    MENOR           reduce using rule 16 (expression -> expression MENOS term .)
-    MAIOR_IGUAL     reduce using rule 16 (expression -> expression MENOS term .)
-    MENOR_IGUAL     reduce using rule 16 (expression -> expression MENOS term .)
-    IGUAL           reduce using rule 16 (expression -> expression MENOS term .)
-    ENQUANTO        reduce using rule 16 (expression -> expression MENOS term .)
-    SE              reduce using rule 16 (expression -> expression MENOS term .)
-    QUEBRE          reduce using rule 16 (expression -> expression MENOS term .)
-    RETORNE         reduce using rule 16 (expression -> expression MENOS term .)
-    VARIAVEL        reduce using rule 16 (expression -> expression MENOS term .)
-    NUMERO          reduce using rule 16 (expression -> expression MENOS term .)
-    PARENTESE_E     reduce using rule 16 (expression -> expression MENOS term .)
-    CHAVE_D         reduce using rule 16 (expression -> expression MENOS term .)
-    PARENTESE_D     reduce using rule 16 (expression -> expression MENOS term .)
-    VEZES           shift and go to state 41
-    DIVIDIDO        shift and go to state 42
+    PARENTESE_D     shift and go to state 53
+    MAIS            shift and go to state 24
+    MENOS           shift and go to state 25
+    MAIOR           shift and go to state 26
+    MENOR           shift and go to state 27
+    MAIOR_IGUAL     shift and go to state 28
+    MENOR_IGUAL     shift and go to state 29
+    IGUAL           shift and go to state 30
 
 
 state 47
 
-    (18) comparison -> expression MAIOR term .
-    (24) term -> term . VEZES factor
-    (25) term -> term . DIVIDIDO factor
+    (11) statement -> SE PARENTESE_E expression . PARENTESE_D CHAVE_E statements CHAVE_D
+    (16) expression -> expression . MAIS term
+    (17) expression -> expression . MENOS term
+    (19) comparison -> expression . MAIOR term
+    (20) comparison -> expression . MENOR term
+    (21) comparison -> expression . MAIOR_IGUAL term
+    (22) comparison -> expression . MENOR_IGUAL term
+    (23) comparison -> expression . IGUAL term
 
-    MAIS            reduce using rule 18 (comparison -> expression MAIOR term .)
-    MENOS           reduce using rule 18 (comparison -> expression MAIOR term .)
-    MAIOR           reduce using rule 18 (comparison -> expression MAIOR term .)
-    MENOR           reduce using rule 18 (comparison -> expression MAIOR term .)
-    MAIOR_IGUAL     reduce using rule 18 (comparison -> expression MAIOR term .)
-    MENOR_IGUAL     reduce using rule 18 (comparison -> expression MAIOR term .)
-    IGUAL           reduce using rule 18 (comparison -> expression MAIOR term .)
-    ENQUANTO        reduce using rule 18 (comparison -> expression MAIOR term .)
-    SE              reduce using rule 18 (comparison -> expression MAIOR term .)
-    QUEBRE          reduce using rule 18 (comparison -> expression MAIOR term .)
-    RETORNE         reduce using rule 18 (comparison -> expression MAIOR term .)
-    VARIAVEL        reduce using rule 18 (comparison -> expression MAIOR term .)
-    NUMERO          reduce using rule 18 (comparison -> expression MAIOR term .)
-    PARENTESE_E     reduce using rule 18 (comparison -> expression MAIOR term .)
-    CHAVE_D         reduce using rule 18 (comparison -> expression MAIOR term .)
-    PARENTESE_D     reduce using rule 18 (comparison -> expression MAIOR term .)
-    VEZES           shift and go to state 41
-    DIVIDIDO        shift and go to state 42
+    PARENTESE_D     shift and go to state 54
+    MAIS            shift and go to state 24
+    MENOS           shift and go to state 25
+    MAIOR           shift and go to state 26
+    MENOR           shift and go to state 27
+    MAIOR_IGUAL     shift and go to state 28
+    MENOR_IGUAL     shift and go to state 29
+    IGUAL           shift and go to state 30
 
 
 state 48
 
-    (19) comparison -> expression MENOR term .
-    (24) term -> term . VEZES factor
-    (25) term -> term . DIVIDIDO factor
+    (25) term -> term VEZES factor .
 
-    MAIS            reduce using rule 19 (comparison -> expression MENOR term .)
-    MENOS           reduce using rule 19 (comparison -> expression MENOR term .)
-    MAIOR           reduce using rule 19 (comparison -> expression MENOR term .)
-    MENOR           reduce using rule 19 (comparison -> expression MENOR term .)
-    MAIOR_IGUAL     reduce using rule 19 (comparison -> expression MENOR term .)
-    MENOR_IGUAL     reduce using rule 19 (comparison -> expression MENOR term .)
-    IGUAL           reduce using rule 19 (comparison -> expression MENOR term .)
-    ENQUANTO        reduce using rule 19 (comparison -> expression MENOR term .)
-    SE              reduce using rule 19 (comparison -> expression MENOR term .)
-    QUEBRE          reduce using rule 19 (comparison -> expression MENOR term .)
-    RETORNE         reduce using rule 19 (comparison -> expression MENOR term .)
-    VARIAVEL        reduce using rule 19 (comparison -> expression MENOR term .)
-    NUMERO          reduce using rule 19 (comparison -> expression MENOR term .)
-    PARENTESE_E     reduce using rule 19 (comparison -> expression MENOR term .)
-    CHAVE_D         reduce using rule 19 (comparison -> expression MENOR term .)
-    PARENTESE_D     reduce using rule 19 (comparison -> expression MENOR term .)
-    VEZES           shift and go to state 41
-    DIVIDIDO        shift and go to state 42
+    VEZES           reduce using rule 25 (term -> term VEZES factor .)
+    DIVIDIDO        reduce using rule 25 (term -> term VEZES factor .)
+    NEWLINE         reduce using rule 25 (term -> term VEZES factor .)
+    MAIS            reduce using rule 25 (term -> term VEZES factor .)
+    MENOS           reduce using rule 25 (term -> term VEZES factor .)
+    MAIOR           reduce using rule 25 (term -> term VEZES factor .)
+    MENOR           reduce using rule 25 (term -> term VEZES factor .)
+    MAIOR_IGUAL     reduce using rule 25 (term -> term VEZES factor .)
+    MENOR_IGUAL     reduce using rule 25 (term -> term VEZES factor .)
+    IGUAL           reduce using rule 25 (term -> term VEZES factor .)
+    PARENTESE_D     reduce using rule 25 (term -> term VEZES factor .)
+    ENQUANTO        reduce using rule 25 (term -> term VEZES factor .)
+    SE              reduce using rule 25 (term -> term VEZES factor .)
+    QUEBRE          reduce using rule 25 (term -> term VEZES factor .)
+    RETORNE         reduce using rule 25 (term -> term VEZES factor .)
+    VARIAVEL        reduce using rule 25 (term -> term VEZES factor .)
+    NUMERO          reduce using rule 25 (term -> term VEZES factor .)
+    PARENTESE_E     reduce using rule 25 (term -> term VEZES factor .)
+    FRASE           reduce using rule 25 (term -> term VEZES factor .)
+    $end            reduce using rule 25 (term -> term VEZES factor .)
+    CHAVE_D         reduce using rule 25 (term -> term VEZES factor .)
 
 
 state 49
 
-    (20) comparison -> expression MAIOR_IGUAL term .
-    (24) term -> term . VEZES factor
-    (25) term -> term . DIVIDIDO factor
+    (26) term -> term DIVIDIDO factor .
 
-    MAIS            reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    MENOS           reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    MAIOR           reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    MENOR           reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    MAIOR_IGUAL     reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    MENOR_IGUAL     reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    IGUAL           reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    ENQUANTO        reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    SE              reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    QUEBRE          reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    RETORNE         reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    VARIAVEL        reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    NUMERO          reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    PARENTESE_E     reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    CHAVE_D         reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    PARENTESE_D     reduce using rule 20 (comparison -> expression MAIOR_IGUAL term .)
-    VEZES           shift and go to state 41
-    DIVIDIDO        shift and go to state 42
+    VEZES           reduce using rule 26 (term -> term DIVIDIDO factor .)
+    DIVIDIDO        reduce using rule 26 (term -> term DIVIDIDO factor .)
+    NEWLINE         reduce using rule 26 (term -> term DIVIDIDO factor .)
+    MAIS            reduce using rule 26 (term -> term DIVIDIDO factor .)
+    MENOS           reduce using rule 26 (term -> term DIVIDIDO factor .)
+    MAIOR           reduce using rule 26 (term -> term DIVIDIDO factor .)
+    MENOR           reduce using rule 26 (term -> term DIVIDIDO factor .)
+    MAIOR_IGUAL     reduce using rule 26 (term -> term DIVIDIDO factor .)
+    MENOR_IGUAL     reduce using rule 26 (term -> term DIVIDIDO factor .)
+    IGUAL           reduce using rule 26 (term -> term DIVIDIDO factor .)
+    PARENTESE_D     reduce using rule 26 (term -> term DIVIDIDO factor .)
+    ENQUANTO        reduce using rule 26 (term -> term DIVIDIDO factor .)
+    SE              reduce using rule 26 (term -> term DIVIDIDO factor .)
+    QUEBRE          reduce using rule 26 (term -> term DIVIDIDO factor .)
+    RETORNE         reduce using rule 26 (term -> term DIVIDIDO factor .)
+    VARIAVEL        reduce using rule 26 (term -> term DIVIDIDO factor .)
+    NUMERO          reduce using rule 26 (term -> term DIVIDIDO factor .)
+    PARENTESE_E     reduce using rule 26 (term -> term DIVIDIDO factor .)
+    FRASE           reduce using rule 26 (term -> term DIVIDIDO factor .)
+    $end            reduce using rule 26 (term -> term DIVIDIDO factor .)
+    CHAVE_D         reduce using rule 26 (term -> term DIVIDIDO factor .)
 
 
 state 50
 
-    (21) comparison -> expression MENOR_IGUAL term .
-    (24) term -> term . VEZES factor
-    (25) term -> term . DIVIDIDO factor
+    (4) params -> VARIAVEL .
+    (5) params -> VARIAVEL . VIRGULA params
 
-    MAIS            reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    MENOS           reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    MAIOR           reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    MENOR           reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    MAIOR_IGUAL     reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    MENOR_IGUAL     reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    IGUAL           reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    ENQUANTO        reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    SE              reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    QUEBRE          reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    RETORNE         reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    VARIAVEL        reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    NUMERO          reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    PARENTESE_E     reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    CHAVE_D         reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    PARENTESE_D     reduce using rule 21 (comparison -> expression MENOR_IGUAL term .)
-    VEZES           shift and go to state 41
-    DIVIDIDO        shift and go to state 42
+    PARENTESE_D     reduce using rule 4 (params -> VARIAVEL .)
+    VIRGULA         shift and go to state 55
 
 
 state 51
 
-    (22) comparison -> expression IGUAL term .
-    (24) term -> term . VEZES factor
-    (25) term -> term . DIVIDIDO factor
+    (3) function -> FUNCAO VARIAVEL PARENTESE_E params . PARENTESE_D CHAVE_E statements CHAVE_D
 
-    MAIS            reduce using rule 22 (comparison -> expression IGUAL term .)
-    MENOS           reduce using rule 22 (comparison -> expression IGUAL term .)
-    MAIOR           reduce using rule 22 (comparison -> expression IGUAL term .)
-    MENOR           reduce using rule 22 (comparison -> expression IGUAL term .)
-    MAIOR_IGUAL     reduce using rule 22 (comparison -> expression IGUAL term .)
-    MENOR_IGUAL     reduce using rule 22 (comparison -> expression IGUAL term .)
-    IGUAL           reduce using rule 22 (comparison -> expression IGUAL term .)
-    ENQUANTO        reduce using rule 22 (comparison -> expression IGUAL term .)
-    SE              reduce using rule 22 (comparison -> expression IGUAL term .)
-    QUEBRE          reduce using rule 22 (comparison -> expression IGUAL term .)
-    RETORNE         reduce using rule 22 (comparison -> expression IGUAL term .)
-    VARIAVEL        reduce using rule 22 (comparison -> expression IGUAL term .)
-    NUMERO          reduce using rule 22 (comparison -> expression IGUAL term .)
-    PARENTESE_E     reduce using rule 22 (comparison -> expression IGUAL term .)
-    CHAVE_D         reduce using rule 22 (comparison -> expression IGUAL term .)
-    PARENTESE_D     reduce using rule 22 (comparison -> expression IGUAL term .)
-    VEZES           shift and go to state 41
-    DIVIDIDO        shift and go to state 42
+    PARENTESE_D     shift and go to state 56
 
 
 state 52
 
-    (9) statement -> ENQUANTO PARENTESE_E expression . PARENTESE_D CHAVE_E statements CHAVE_D
-    (15) expression -> expression . MAIS term
-    (16) expression -> expression . MENOS term
-    (18) comparison -> expression . MAIOR term
-    (19) comparison -> expression . MENOR term
-    (20) comparison -> expression . MAIOR_IGUAL term
-    (21) comparison -> expression . MENOR_IGUAL term
-    (22) comparison -> expression . IGUAL term
+    (6) params -> empty .
 
-    PARENTESE_D     shift and go to state 56
-    MAIS            shift and go to state 31
-    MENOS           shift and go to state 32
-    MAIOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAIOR_IGUAL     shift and go to state 35
-    MENOR_IGUAL     shift and go to state 36
-    IGUAL           shift and go to state 37
+    PARENTESE_D     reduce using rule 6 (params -> empty .)
 
 
 state 53
 
-    (10) statement -> SE PARENTESE_E expression . PARENTESE_D CHAVE_E statements CHAVE_D
-    (15) expression -> expression . MAIS term
-    (16) expression -> expression . MENOS term
-    (18) comparison -> expression . MAIOR term
-    (19) comparison -> expression . MENOR term
-    (20) comparison -> expression . MAIOR_IGUAL term
-    (21) comparison -> expression . MENOR_IGUAL term
-    (22) comparison -> expression . IGUAL term
+    (10) statement -> ENQUANTO PARENTESE_E expression PARENTESE_D . CHAVE_E statements CHAVE_D
 
-    PARENTESE_D     shift and go to state 57
-    MAIS            shift and go to state 31
-    MENOS           shift and go to state 32
-    MAIOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAIOR_IGUAL     shift and go to state 35
-    MENOR_IGUAL     shift and go to state 36
-    IGUAL           shift and go to state 37
+    CHAVE_E         shift and go to state 57
 
 
 state 54
 
-    (24) term -> term VEZES factor .
-
-    VEZES           reduce using rule 24 (term -> term VEZES factor .)
-    DIVIDIDO        reduce using rule 24 (term -> term VEZES factor .)
-    MAIS            reduce using rule 24 (term -> term VEZES factor .)
-    MENOS           reduce using rule 24 (term -> term VEZES factor .)
-    MAIOR           reduce using rule 24 (term -> term VEZES factor .)
-    MENOR           reduce using rule 24 (term -> term VEZES factor .)
-    MAIOR_IGUAL     reduce using rule 24 (term -> term VEZES factor .)
-    MENOR_IGUAL     reduce using rule 24 (term -> term VEZES factor .)
-    IGUAL           reduce using rule 24 (term -> term VEZES factor .)
-    ENQUANTO        reduce using rule 24 (term -> term VEZES factor .)
-    SE              reduce using rule 24 (term -> term VEZES factor .)
-    QUEBRE          reduce using rule 24 (term -> term VEZES factor .)
-    RETORNE         reduce using rule 24 (term -> term VEZES factor .)
-    VARIAVEL        reduce using rule 24 (term -> term VEZES factor .)
-    NUMERO          reduce using rule 24 (term -> term VEZES factor .)
-    PARENTESE_E     reduce using rule 24 (term -> term VEZES factor .)
-    CHAVE_D         reduce using rule 24 (term -> term VEZES factor .)
-    PARENTESE_D     reduce using rule 24 (term -> term VEZES factor .)
-
-
-state 55
-
-    (25) term -> term DIVIDIDO factor .
-
-    VEZES           reduce using rule 25 (term -> term DIVIDIDO factor .)
-    DIVIDIDO        reduce using rule 25 (term -> term DIVIDIDO factor .)
-    MAIS            reduce using rule 25 (term -> term DIVIDIDO factor .)
-    MENOS           reduce using rule 25 (term -> term DIVIDIDO factor .)
-    MAIOR           reduce using rule 25 (term -> term DIVIDIDO factor .)
-    MENOR           reduce using rule 25 (term -> term DIVIDIDO factor .)
-    MAIOR_IGUAL     reduce using rule 25 (term -> term DIVIDIDO factor .)
-    MENOR_IGUAL     reduce using rule 25 (term -> term DIVIDIDO factor .)
-    IGUAL           reduce using rule 25 (term -> term DIVIDIDO factor .)
-    ENQUANTO        reduce using rule 25 (term -> term DIVIDIDO factor .)
-    SE              reduce using rule 25 (term -> term DIVIDIDO factor .)
-    QUEBRE          reduce using rule 25 (term -> term DIVIDIDO factor .)
-    RETORNE         reduce using rule 25 (term -> term DIVIDIDO factor .)
-    VARIAVEL        reduce using rule 25 (term -> term DIVIDIDO factor .)
-    NUMERO          reduce using rule 25 (term -> term DIVIDIDO factor .)
-    PARENTESE_E     reduce using rule 25 (term -> term DIVIDIDO factor .)
-    CHAVE_D         reduce using rule 25 (term -> term DIVIDIDO factor .)
-    PARENTESE_D     reduce using rule 25 (term -> term DIVIDIDO factor .)
-
-
-state 56
-
-    (9) statement -> ENQUANTO PARENTESE_E expression PARENTESE_D . CHAVE_E statements CHAVE_D
+    (11) statement -> SE PARENTESE_E expression PARENTESE_D . CHAVE_E statements CHAVE_D
 
     CHAVE_E         shift and go to state 58
 
 
+state 55
+
+    (5) params -> VARIAVEL VIRGULA . params
+    (4) params -> . VARIAVEL
+    (5) params -> . VARIAVEL VIRGULA params
+    (6) params -> . empty
+    (31) empty -> .
+
+    VARIAVEL        shift and go to state 50
+    PARENTESE_D     reduce using rule 31 (empty -> .)
+
+    params                         shift and go to state 59
+    empty                          shift and go to state 52
+
+state 56
+
+    (3) function -> FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D . CHAVE_E statements CHAVE_D
+
+    CHAVE_E         shift and go to state 60
+
+
 state 57
 
-    (10) statement -> SE PARENTESE_E expression PARENTESE_D . CHAVE_E statements CHAVE_D
+    (10) statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E . statements CHAVE_D
+    (7) statements -> . statement
+    (8) statements -> . statement statements
+    (9) statement -> . expression NEWLINE
+    (10) statement -> . ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
+    (11) statement -> . SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
+    (12) statement -> . QUEBRE
+    (13) statement -> . RETORNE expression
+    (14) statement -> . VARIAVEL RECEBE expression
+    (15) expression -> . term
+    (16) expression -> . expression MAIS term
+    (17) expression -> . expression MENOS term
+    (18) expression -> . comparison
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (19) comparison -> . expression MAIOR term
+    (20) comparison -> . expression MENOR term
+    (21) comparison -> . expression MAIOR_IGUAL term
+    (22) comparison -> . expression MENOR_IGUAL term
+    (23) comparison -> . expression IGUAL term
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    CHAVE_E         shift and go to state 59
+    ENQUANTO        shift and go to state 9
+    SE              shift and go to state 10
+    QUEBRE          shift and go to state 11
+    RETORNE         shift and go to state 12
+    VARIAVEL        shift and go to state 5
+    NUMERO          shift and go to state 16
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
+    expression                     shift and go to state 8
+    statements                     shift and go to state 61
+    statement                      shift and go to state 7
+    term                           shift and go to state 13
+    comparison                     shift and go to state 14
+    factor                         shift and go to state 15
 
 state 58
 
-    (9) statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E . statements CHAVE_D
-    (6) statements -> . statement
-    (7) statements -> . statement statements
-    (8) statement -> . expression
-    (9) statement -> . ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
-    (10) statement -> . SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
-    (11) statement -> . QUEBRE
-    (12) statement -> . RETORNE expression
-    (13) statement -> . VARIAVEL RECEBE expression
-    (14) expression -> . term
-    (15) expression -> . expression MAIS term
-    (16) expression -> . expression MENOS term
-    (17) expression -> . comparison
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (18) comparison -> . expression MAIOR term
-    (19) comparison -> . expression MENOR term
-    (20) comparison -> . expression MAIOR_IGUAL term
-    (21) comparison -> . expression MENOR_IGUAL term
-    (22) comparison -> . expression IGUAL term
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (11) statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E . statements CHAVE_D
+    (7) statements -> . statement
+    (8) statements -> . statement statements
+    (9) statement -> . expression NEWLINE
+    (10) statement -> . ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
+    (11) statement -> . SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
+    (12) statement -> . QUEBRE
+    (13) statement -> . RETORNE expression
+    (14) statement -> . VARIAVEL RECEBE expression
+    (15) expression -> . term
+    (16) expression -> . expression MAIS term
+    (17) expression -> . expression MENOS term
+    (18) expression -> . comparison
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (19) comparison -> . expression MAIOR term
+    (20) comparison -> . expression MENOR term
+    (21) comparison -> . expression MAIOR_IGUAL term
+    (22) comparison -> . expression MENOR_IGUAL term
+    (23) comparison -> . expression IGUAL term
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    ENQUANTO        shift and go to state 18
-    SE              shift and go to state 19
-    QUEBRE          shift and go to state 20
-    RETORNE         shift and go to state 21
-    VARIAVEL        shift and go to state 13
-    NUMERO          shift and go to state 25
-    PARENTESE_E     shift and go to state 14
+    ENQUANTO        shift and go to state 9
+    SE              shift and go to state 10
+    QUEBRE          shift and go to state 11
+    RETORNE         shift and go to state 12
+    VARIAVEL        shift and go to state 5
+    NUMERO          shift and go to state 16
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
-    expression                     shift and go to state 17
-    statements                     shift and go to state 60
-    statement                      shift and go to state 16
-    term                           shift and go to state 22
-    comparison                     shift and go to state 23
-    factor                         shift and go to state 24
+    expression                     shift and go to state 8
+    statements                     shift and go to state 62
+    statement                      shift and go to state 7
+    term                           shift and go to state 13
+    comparison                     shift and go to state 14
+    factor                         shift and go to state 15
 
 state 59
 
-    (10) statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E . statements CHAVE_D
-    (6) statements -> . statement
-    (7) statements -> . statement statements
-    (8) statement -> . expression
-    (9) statement -> . ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
-    (10) statement -> . SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
-    (11) statement -> . QUEBRE
-    (12) statement -> . RETORNE expression
-    (13) statement -> . VARIAVEL RECEBE expression
-    (14) expression -> . term
-    (15) expression -> . expression MAIS term
-    (16) expression -> . expression MENOS term
-    (17) expression -> . comparison
-    (23) term -> . factor
-    (24) term -> . term VEZES factor
-    (25) term -> . term DIVIDIDO factor
-    (18) comparison -> . expression MAIOR term
-    (19) comparison -> . expression MENOR term
-    (20) comparison -> . expression MAIOR_IGUAL term
-    (21) comparison -> . expression MENOR_IGUAL term
-    (22) comparison -> . expression IGUAL term
-    (26) factor -> . NUMERO
-    (27) factor -> . VARIAVEL
-    (28) factor -> . PARENTESE_E expression PARENTESE_D
+    (5) params -> VARIAVEL VIRGULA params .
 
-    ENQUANTO        shift and go to state 18
-    SE              shift and go to state 19
-    QUEBRE          shift and go to state 20
-    RETORNE         shift and go to state 21
-    VARIAVEL        shift and go to state 13
-    NUMERO          shift and go to state 25
-    PARENTESE_E     shift and go to state 14
+    PARENTESE_D     reduce using rule 5 (params -> VARIAVEL VIRGULA params .)
 
-    expression                     shift and go to state 17
-    statements                     shift and go to state 61
-    statement                      shift and go to state 16
-    term                           shift and go to state 22
-    comparison                     shift and go to state 23
-    factor                         shift and go to state 24
 
 state 60
 
-    (9) statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements . CHAVE_D
+    (3) function -> FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E . statements CHAVE_D
+    (7) statements -> . statement
+    (8) statements -> . statement statements
+    (9) statement -> . expression NEWLINE
+    (10) statement -> . ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
+    (11) statement -> . SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
+    (12) statement -> . QUEBRE
+    (13) statement -> . RETORNE expression
+    (14) statement -> . VARIAVEL RECEBE expression
+    (15) expression -> . term
+    (16) expression -> . expression MAIS term
+    (17) expression -> . expression MENOS term
+    (18) expression -> . comparison
+    (24) term -> . factor
+    (25) term -> . term VEZES factor
+    (26) term -> . term DIVIDIDO factor
+    (19) comparison -> . expression MAIOR term
+    (20) comparison -> . expression MENOR term
+    (21) comparison -> . expression MAIOR_IGUAL term
+    (22) comparison -> . expression MENOR_IGUAL term
+    (23) comparison -> . expression IGUAL term
+    (27) factor -> . NUMERO
+    (28) factor -> . VARIAVEL
+    (29) factor -> . PARENTESE_E expression PARENTESE_D
+    (30) factor -> . FRASE
 
-    CHAVE_D         shift and go to state 62
+    ENQUANTO        shift and go to state 9
+    SE              shift and go to state 10
+    QUEBRE          shift and go to state 11
+    RETORNE         shift and go to state 12
+    VARIAVEL        shift and go to state 5
+    NUMERO          shift and go to state 16
+    PARENTESE_E     shift and go to state 6
+    FRASE           shift and go to state 17
 
+    statements                     shift and go to state 63
+    statement                      shift and go to state 7
+    expression                     shift and go to state 8
+    term                           shift and go to state 13
+    comparison                     shift and go to state 14
+    factor                         shift and go to state 15
 
 state 61
 
-    (10) statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements . CHAVE_D
+    (10) statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements . CHAVE_D
 
-    CHAVE_D         shift and go to state 63
+    CHAVE_D         shift and go to state 64
 
 
 state 62
 
-    (9) statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .
+    (11) statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements . CHAVE_D
 
-    ENQUANTO        reduce using rule 9 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
-    SE              reduce using rule 9 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
-    QUEBRE          reduce using rule 9 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
-    RETORNE         reduce using rule 9 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
-    VARIAVEL        reduce using rule 9 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
-    NUMERO          reduce using rule 9 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
-    PARENTESE_E     reduce using rule 9 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
-    CHAVE_D         reduce using rule 9 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    CHAVE_D         shift and go to state 65
 
 
 state 63
 
-    (10) statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .
+    (3) function -> FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements . CHAVE_D
 
-    ENQUANTO        reduce using rule 10 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
-    SE              reduce using rule 10 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
-    QUEBRE          reduce using rule 10 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
-    RETORNE         reduce using rule 10 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
-    VARIAVEL        reduce using rule 10 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
-    NUMERO          reduce using rule 10 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
-    PARENTESE_E     reduce using rule 10 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
-    CHAVE_D         reduce using rule 10 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    CHAVE_D         shift and go to state 66
+
+
+state 64
+
+    (10) statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .
+
+    ENQUANTO        reduce using rule 10 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    SE              reduce using rule 10 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    QUEBRE          reduce using rule 10 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    RETORNE         reduce using rule 10 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    VARIAVEL        reduce using rule 10 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    NUMERO          reduce using rule 10 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    PARENTESE_E     reduce using rule 10 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    FRASE           reduce using rule 10 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    $end            reduce using rule 10 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    CHAVE_D         reduce using rule 10 (statement -> ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+
+
+state 65
+
+    (11) statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .
+
+    ENQUANTO        reduce using rule 11 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    SE              reduce using rule 11 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    QUEBRE          reduce using rule 11 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    RETORNE         reduce using rule 11 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    VARIAVEL        reduce using rule 11 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    NUMERO          reduce using rule 11 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    PARENTESE_E     reduce using rule 11 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    FRASE           reduce using rule 11 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    $end            reduce using rule 11 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+    CHAVE_D         reduce using rule 11 (statement -> SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D .)
+
+
+state 66
+
+    (3) function -> FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_D .
+
+    $end            reduce using rule 3 (function -> FUNCAO VARIAVEL PARENTESE_E params PARENTESE_D CHAVE_E statements CHAVE_D .)
 

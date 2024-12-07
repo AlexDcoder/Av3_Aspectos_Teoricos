@@ -2,7 +2,7 @@ from __future__ import annotations
 from tkinter import END, messagebox
 from typing import Tuple
 import customtkinter
-
+from compiler import PyturgueseCompiler
 
 # Creating home configs
 customtkinter.set_appearance_mode("Dark")
@@ -98,7 +98,7 @@ class Analyser(customtkinter.CTk):
 
         self.output_textbox = customtkinter.CTkTextbox(
             self.output_frame, 550, 400,
-            fg_color=("transparent")
+            fg_color=("transparent"), wrap="none"
         )
         self.output_textbox.configure(state='disabled')
         self.output_textbox.pack()
@@ -122,7 +122,18 @@ class Analyser(customtkinter.CTk):
     def compile(self):
         self.output_textbox.configure(state='normal')
         self.output_textbox.delete("1.0", END)
-        self.output_textbox.insert("1.0", "oi")
+        code = self.input_textarea.get("1.0", END)
+        try:
+            # Tenta compilar o código e exibir a árvore sintática
+            tree = PyturgueseCompiler.generate_tree(code)
+            self.output_textbox.insert("1.0", tree)
+        except Exception as e:
+            # Captura qualquer erro e lança uma mensagem de erro
+            error_message = f"Compilation error: {str(e)}"
+            alert_error(error_message)
+            raise e  # Opcional, pode levantar a exceção para depuração
+        finally:
+            self.output_textbox.configure(state='disabled')
 
     def clear_input(self):
         '''
@@ -131,6 +142,9 @@ class Analyser(customtkinter.CTk):
         if self.input_textarea.get("1.0", "end-1c") != \
                 "Insert your code here.":
             self.input_textarea.delete("0.0", END)
+            self.output_textbox.configure(state='normal')
+            self.output_textbox.delete("0.0", END)
+            self.output_textbox.configure(state='disabled')
 
     def copy(self):
         self.output_textbox.configure(state='normal')

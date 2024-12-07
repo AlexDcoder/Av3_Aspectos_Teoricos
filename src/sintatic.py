@@ -1,9 +1,11 @@
 import ply.yacc as yacc
 from lexer import tokens, get_lexer  # Importa os tokens definidos no lexer
 
-lexer = get_lexer()  
+lexer = get_lexer()
 
 # Nós da árvore sintática abstrata (AST)
+
+
 class Node:
     def __init__(self, node_type, children=None, value=None):
         self.node_type = node_type
@@ -14,19 +16,21 @@ class Node:
         return self.to_string()
 
     def to_string(self, level=0):
-        ret = "\t" * level + f"Node(type={self.node_type}, value={self.value})\n"
+        ret = "  " * level + \
+            f"Node(type={self.node_type}, value={self.value})\n"
         for child in self.children:
-            # If child is a string, don't call to_string, just append it
             if isinstance(child, Node):
                 ret += child.to_string(level + 1)
             else:
-                ret += "\t" * (level + 1) + f"Value: {child}\n"
+                ret += "  " * (level + 1) + f"Value: {child}\n"
+        ret += "\n"
         return ret
 
 
 # Regras de produção
 def p_program(p):
-    """program : function"""
+    """program : function
+            | statements"""
     p[0] = Node("program", [p[1]])
 
 
@@ -57,7 +61,7 @@ def p_statements(p):
 
 
 def p_statement(p):
-    """statement : expression
+    """statement : expression NEWLINE
                  | ENQUANTO PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
                  | SE PARENTESE_E expression PARENTESE_D CHAVE_E statements CHAVE_D
                  | QUEBRE
@@ -72,8 +76,8 @@ def p_statement(p):
         p[0] = Node("return", [p[2]])
     else:
         p[0] = p[1]
-        
-        
+
+
 def p_statement_assignment(p):
     """statement : VARIAVEL RECEBE expression"""
     p[0] = Node("assignment", [p[1], p[3]], "=")
@@ -88,6 +92,17 @@ def p_expression(p):
         p[0] = p[1]
     else:
         p[0] = Node("expression", [p[1], p[3]], p[2])
+
+
+# def p_expression_string(p):
+#     '''expression : FRASE'''
+#     p[0] = Node("frase", [p[0]])
+
+
+# def p_expression_number(p):
+#     '''expression : NUMERO'''
+#     p[0] = Node("frase", [p[0]])
+
 
 def p_comparison(p):
     """comparison : expression MAIOR term
@@ -111,7 +126,8 @@ def p_term(p):
 def p_factor(p):
     """factor : NUMERO
               | VARIAVEL
-              | PARENTESE_E expression PARENTESE_D"""
+              | PARENTESE_E expression PARENTESE_D
+              | FRASE"""
     if len(p) == 2:
         p[0] = Node("factor", value=p[1])
     else:
@@ -135,19 +151,7 @@ parser = yacc.yacc()
 
 if __name__ == "__main__":
     code = """
-    funcao minhaFuncao(x, y) {
-        se (x < y) {
-            retorne x + y
-        }
-        enquanto (x > 0) {
-            x = x - 1p
-            se (x == 1) 
-                quebre
-            }
-        }
-        retorne 0
-    }
+    x = "DASDSADS"
     """
     result = parser.parse(code, lexer=lexer)
     print(result)
-
